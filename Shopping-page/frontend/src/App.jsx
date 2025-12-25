@@ -6,6 +6,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <main className="page-container">{/* All page content goes here */}</main>
     </>
   );
 }
