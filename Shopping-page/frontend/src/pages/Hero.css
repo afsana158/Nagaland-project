@@ -1,0 +1,87 @@
+.hero_section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: 0; /* ✅ important */
+  padding-top: 0; /* ✅ important */
+}
+
+/* Background image slide */
+.hero_slide {
+  height: 100vh;
+  background-size: cover;
+  background-position: center 60%;
+}
+
+/* Dark overlay for readability */
+.hero_section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+/* Text overlay on hero */
+.hero_content {
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  transform: translateY(-50%);
+  color: #fff;
+  z-index: 2; /* ABOVE dark overlay */
+  max-width: 520px;
+}
+
+.hero_content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero_content h1 span {
+  color: #f5c16c; /* premium gold accent */
+}
+
+.hero_content p {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.discover {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: var(--font-open-sans);
+}
+
+.discover span {
+  font-size: 0.9rem;
+}
+
+.discover .arrow {
+  margin-top: 0;
+  font-size: 1.4rem;
+  animation: bounce 1.6s infinite;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+}
+.discover {
+  z-index: 3;
+}

@@ -1,0 +1,125 @@
+.footer {
+  background: var(--black);
+  color: #ffffff;
+  padding: 3rem 2rem 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 1200px;
+  margin: auto;
+  align-items: start;
+}
+.footer-col:first-child {
+  margin-top: -4.5rem;
+}
+
+/* Column base */
+.footer-col h4 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Logo */
+.footer-logo {
+  width: 200px; /* increase size */
+  height: auto;
+  align-items: center;
+}
+
+/* Description */
+.footer-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.5;
+  margin-top: -2rem;
+  text-align: justify;
+}
+
+/* Links */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  font-family: var(--font-open-sans);
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.footer-links li:hover {
+  opacity: 1;
+  color: var(--bg-coffee);
+}
+
+.footer-links li a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-col p {
+  font-family: var(--font-open-sans);
+  margin-bottom: 0.75rem;
+  opacity: 0.5;
+}
+.footer-col p i {
+  font-size: 1.3rem;
+  opacity: 1 !important;
+  color: var(--bg-coffee);
+  padding: 4px;
+  margin-right: 8px;
+}
+
+/* Social Icons */
+.footer-socials {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-socials i {
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.footer-socials i:hover {
+  transform: scale(1.15);
+  color: var(--bg-coffee);
+}
+
+/* Bottom bar */
+/* .footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  opacity: 0.6;
+} */
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  border-top: 2px solid var(--bg-coffee);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+}

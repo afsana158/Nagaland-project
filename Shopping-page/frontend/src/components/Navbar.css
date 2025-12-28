@@ -1,11 +1,15 @@
 /* FULL HEADER WRAPPER */
 .ngl-header {
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
   color: white;
   font-family: "Poppins", sans-serif;
+}
+
+.ngl-header.hide {
+  transform: translateY(-100%);
 }
 
 .ngl-container {
@@ -59,12 +63,29 @@
 }
 
 .ngl-left-menu li {
+  position: relative;
   cursor: pointer;
+  transition: color 0.3s ease;
   font-size: 0.95rem;
 }
 
-.ngl-left-menu .active {
-  border-bottom: 1px solid white;
+.ngl-left-menu li:hover {
+  color: #f5c16c;
+}
+
+.ngl-left-menu li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1.5px;
+  background-color: #f5c16c;
+  transition: width 0.3s ease;
+}
+
+.ngl-left-menu li:hover::after {
+  width: 100%;
 }
 
 /* CENTER LOGO */
@@ -86,4 +107,33 @@
 
 .ngl-right-icons li {
   cursor: pointer;
+}
+
+.ngl-right-icons li {
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.ngl-right-icons li:hover {
+  color: #f5c16c;
+  transform: scale(1.1);
+}
+
+/* --- Arrow styling for dynamic toggle --- */
+.ngl-left-menu li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative; /* future dropdown anchor */
+}
+
+/* Arrow */
+.ngl-arrow {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate when open */
+.ngl-arrow.open {
+  transform: rotate(180deg);
 }

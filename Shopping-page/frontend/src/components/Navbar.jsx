@@ -1,8 +1,25 @@
+import { useState, useEffect } from "react";
 import "./Navbar.css";
+import { FiUser, FiHeart, FiShoppingCart, FiSearch } from "react-icons/fi";
 
 export default function Navbar() {
+  const [openMenu, setOpenMenu] = useState(null);
+  const [hideNav, setHideNav] = useState(false);
+
+  const toggleMenu = (menu) => {
+    setOpenMenu(openMenu === menu ? null : menu);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHideNav(window.scrollY > 80); // hide after 50px
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="ngl-header">
+    <header className={`ngl-header ${hideNav ? "hide" : ""}`}>
       {/* ----------------- TOP TAGLINE STRIP ----------------- */}
       <div className="ngl-top-strip">
         <div className="ngl-container">
@@ -12,7 +29,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ----------------- FIRST SEPARATOR ----------------- */}
       <div className="ngl-separator"></div>
 
       {/* ----------------- MAIN NAVBAR ----------------- */}
@@ -20,10 +36,34 @@ export default function Navbar() {
         <div className="ngl-container ngl-nav-grid">
           {/* LEFT MENU */}
           <ul className="ngl-left-menu">
-            <li className="active">HOME</li>
-            <li>SHOP ▾</li>
-            <li>GIFTING ▾</li>
-            <li>ABOUT ▾</li>
+            <li>HOME</li>
+
+            <li onClick={() => toggleMenu("shop")}>
+              SHOP
+              <span
+                className={`ngl-arrow ${openMenu === "shop" ? "open" : ""}`}
+              >
+                ▾
+              </span>
+            </li>
+
+            <li onClick={() => toggleMenu("gifting")}>
+              GIFTING
+              <span
+                className={`ngl-arrow ${openMenu === "gifting" ? "open" : ""}`}
+              >
+                ▾
+              </span>
+            </li>
+
+            <li onClick={() => toggleMenu("about")}>
+              ABOUT
+              <span
+                className={`ngl-arrow ${openMenu === "about" ? "open" : ""}`}
+              >
+                ▾
+              </span>
+            </li>
           </ul>
 
           {/* CENTER LOGO */}
@@ -31,15 +71,22 @@ export default function Navbar() {
 
           {/* RIGHT ICONS */}
           <ul className="ngl-right-icons">
-            <li>👤</li>
-            <li>♡</li>
-            <li>🛒</li>
-            <li>🔍</li>
+            <li>
+              <FiUser />
+            </li>
+            <li>
+              <FiHeart />
+            </li>
+            <li>
+              <FiShoppingCart />
+            </li>
+            <li>
+              <FiSearch />
+            </li>
           </ul>
         </div>
       </nav>
 
-      {/* ----------------- SECOND SEPARATOR ----------------- */}
       <div className="ngl-separator"></div>
     </header>
   );
