@@ -12,15 +12,18 @@ function Hero() {
           Welcome to <span>Nagacrafts</span>
         </h1>
         <p>Authentic handcrafted products from Nagaland</p>
-      </div>
 
-      <div className="discover-wrapper">
-        <div className="discover">
-          <span>Discover</span>
-          <div className="arrow">⌄</div>
-        </div>
+        <button
+          className="explore-btn"
+          onClick={() =>
+            document
+              .getElementById("shop")
+              .scrollIntoView({ behavior: "smooth" })
+          }
+        >
+          Explore
+        </button>
       </div>
-
       <div
         className="hero_slide"
         style={{ backgroundImage: `url(${banner})` }}

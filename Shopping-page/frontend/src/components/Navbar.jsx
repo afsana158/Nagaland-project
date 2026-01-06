@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { FiUser, FiHeart, FiShoppingCart, FiSearch } from "react-icons/fi";
 
@@ -12,7 +13,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setHideNav(window.scrollY > 80); // hide after 50px
+      setHideNav(window.scrollY > 200); // hide after 100px
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -36,10 +37,13 @@ export default function Navbar() {
         <div className="ngl-container ngl-nav-grid">
           {/* LEFT MENU */}
           <ul className="ngl-left-menu">
-            <li>HOME</li>
+            <li>
+              {" "}
+              <Link to="/">HOME</Link>
+            </li>
 
             <li onClick={() => toggleMenu("shop")}>
-              SHOP
+              <Link to="/shop">SHOP BY CATEGORY</Link>
               <span
                 className={`ngl-arrow ${openMenu === "shop" ? "open" : ""}`}
               >
@@ -57,12 +61,7 @@ export default function Navbar() {
             </li>
 
             <li onClick={() => toggleMenu("about")}>
-              ABOUT
-              <span
-                className={`ngl-arrow ${openMenu === "about" ? "open" : ""}`}
-              >
-                ▾
-              </span>
+              <Link to="/about">ABOUT</Link>
             </li>
           </ul>
 

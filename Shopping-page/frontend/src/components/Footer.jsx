@@ -60,7 +60,7 @@ function Footer() {
 
       {/* Bottom bar */}
       <div className="footer-bottom">
-        © {new Date().getFullYear()} Nagaland Tourism. All rights reserved.
+        &copy; {new Date().getFullYear()} Nagaland Tourism. All rights reserved.
       </div>
     </footer>
   );

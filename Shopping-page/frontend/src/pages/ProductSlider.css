@@ -31,11 +31,14 @@
 
 /* 🔥 HIGH QUALITY IMAGE */
 .hero-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
   image-rendering: auto;
+  display: block;
 }
 
 /* Dark overlay */
@@ -86,6 +89,44 @@
 .hero-card-overlay button:hover {
   background: white;
   color: black;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+
+  font-size: 1.6rem;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+.slider-arrow:hover {
+  background: white;
+  color: black;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-arrow.left {
+  left: 30px;
+}
+
+.slider-arrow.right {
+  right: 30px;
 }
 
 /* Mobile */

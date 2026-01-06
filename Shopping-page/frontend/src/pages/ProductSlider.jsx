@@ -1,23 +1,39 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./ProductSlider.css";
-import jewelleryImg from "../assets/jewellerybanner.jpg";
-import crafts from "../assets/craftsBanner.jpg";
+import jewelleryImg from "../assets/necklaceBanner.png";
+import crafts from "../assets/Mask.png";
+import handloom from "../assets/handloom.jpg";
+import souvenir from "../assets/souvenirs.png";
 
 const slides = [
   {
     id: 1,
-    title: "Nagaland Jewellery",
+    title: "Jewellery",
     subtitle: "Explore our Best Sellers!",
     image: jewelleryImg,
     slug: "jewellery",
   },
   {
     id: 2,
-    title: "Handcrafted Crafts",
+    title: "Naga Tribal Crafts",
     subtitle: "Authentic Tribal Art from Nagaland",
     image: crafts,
     slug: "crafts",
+  },
+  {
+    id: 3,
+    title: "Handlooms",
+    subtitle: "Traditional Naga Weaves",
+    image: handloom,
+    slug: "handlooms",
+  },
+  {
+    id: 4,
+    title: "Souvenirs",
+    subtitle: "Take a Piece of Nagaland Home",
+    image: souvenir,
+    slug: "souvenirs",
   },
 ];
 
@@ -25,13 +41,22 @@ export default function CategoryHeroSlideshow() {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 4000);
+  // Auto slide
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setCurrent((prev) => (prev + 1) % slides.length);
+  //   }, 10000);
 
-    return () => clearInterval(timer);
-  }, []);
+  //   return () => clearInterval(timer);
+  // }, []);
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
 
   return (
     <section className="hero-card-section">
@@ -50,6 +75,13 @@ export default function CategoryHeroSlideshow() {
           </div>
         </div>
       ))}
+
+      <button className="slider-arrow left" onClick={prevSlide}>
+        &#10094;
+      </button>
+      <button className="slider-arrow right" onClick={nextSlide}>
+        &#10095;
+      </button>
     </section>
   );
 }

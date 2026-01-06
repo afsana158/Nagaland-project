@@ -97,12 +97,12 @@
 }
 
 /* Bottom bar */
-/* .footer-bottom {
+.footer-bottom {
   text-align: center;
   margin-top: 3rem;
   font-size: 0.85rem;
   opacity: 0.6;
-} */
+}
 .footer-bottom {
   margin-top: 3rem;
   padding-top: 1.25rem;

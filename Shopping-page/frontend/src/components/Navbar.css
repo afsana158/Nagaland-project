@@ -137,3 +137,14 @@
 .ngl-arrow.open {
   transform: rotate(180deg);
 }
+
+.ngl-left-menu a,
+.ngl-logo a {
+  color: inherit;
+  text-decoration: none;
+  font: inherit;
+}
+
+.ngl-left-menu li:hover a {
+  color: #f5c16c;
+}
