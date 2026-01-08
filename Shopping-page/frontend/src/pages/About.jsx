@@ -6,6 +6,7 @@ import jewelryImg from "../assets/WomenArtist.webp";
 import artisanVideo from "../assets/NagalandArtisanVideo.mp4";
 import handwovenVideo from "../assets/HandwovenTextilesVideo.mp4";
 import bambooVideo from "../assets/BambooCraftVideo.mp4";
+import People from "../assets/PeopleofNagaland.jpg";
 
 export default function About() {
   // Scroll animation using IntersectionObserver
@@ -30,12 +31,17 @@ export default function About() {
   return (
     <main className="about-page">
       {/* HERO */}
-      <section className="about-hero">
-        <h1>About Nagacrafts</h1>
-        <p>
-          Authentic handcrafted products from Nagaland, preserving tribal
-          heritage, culture, and artisanal excellence.
-        </p>
+      <section
+        className="about-hero"
+        style={{ backgroundImage: `url(${People})` }}
+      >
+        <div className="about-hero-overlay">
+          <h1>About Nagacrafts</h1>
+          <p>
+            Authentic handcrafted products from Nagaland, preserving tribal
+            heritage, culture, and artisanal excellence.
+          </p>
+        </div>
       </section>
 
       {/* STORY */}
