@@ -44,6 +44,10 @@ function Section2() {
           </div>
         </div>
       </div>
+      <div className="section2-bottom-text">
+        <h1>Gems of Nagaland</h1>
+        <p>Discover the hidden treasures and cultural gems of Nagaland</p>
+      </div>
     </section>
   );
 }
