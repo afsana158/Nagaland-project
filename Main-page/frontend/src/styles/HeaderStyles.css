@@ -361,3 +361,77 @@
     opacity: 1;
   }
 }
+
+
+.simple-dropdown .dropdown-menu,
+.flyout-dropdown .dropdown-menu {
+  background: rgba(5, 10, 22, 0.98);
+  backdrop-filter: blur(14px);
+  border-radius: 9px;
+  padding: 0.6rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.simple-dropdown .dropdown-item {
+  color: rgba(255,255,255,0.75);
+  padding: 0.5rem 1rem;
+}
+
+.simple-dropdown .dropdown-item:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+}
+.flyout-dropdown .dropdown-menu {
+  min-width: 220px;
+  position: relative;
+}
+
+/* Each main item */
+.flyout-item {
+  position: relative;
+  padding: 0.5rem 1rem;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.flyout-item:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+.flyout-menu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 200px;
+
+  background: rgba(7, 13, 26, 0.98);
+  backdrop-filter: blur(14px);
+  border-radius: 12px;
+  padding: 0.6rem;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.25s ease;
+
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Show submenu on hover */
+.flyout-item:hover .flyout-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+.flyout-menu span {
+  display: block;
+  padding: 0.45rem 0.8rem;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+}
+
+.flyout-menu span:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-radius: 6px;
+}

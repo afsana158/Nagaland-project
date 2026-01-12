@@ -7,12 +7,12 @@ import {
   NavDropdown,
   Offcanvas,
 } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import Logo from "./../assets/nagalandLogo1.webp";
 
 function Header() {
-  const location = useLocation();
-  const isHome = location.pathname === "/";
+  
+  
 
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -63,8 +63,7 @@ function Header() {
         fixed="top"
         className={`
                   ${showNavbar ? "navbar--visible" : "navbar--hidden"}
-                 ${isHome && isAtTop ? "navbar--transparent" : "navbar--black"}
-
+                ${isAtTop ? "navbar--transparent" : "navbar--black"}
                 `}
       >
         <Container>
@@ -87,12 +86,33 @@ function Header() {
 
           {/* DESKTOP CONTENT */}
           <Navbar.Collapse className="d-none d-lg-flex">
-            <div className="navbar-center">
-              <Nav className="desktop-nav">
-                <NavDropdown title="About" />
-                <NavDropdown title="Explore" />
-                <NavDropdown title="Plan" />
-              </Nav>
+            <div className="navbar-center">  
+             <Nav className="desktop-nav">
+
+                  {/* ABOUT – SIMPLE LIST */}
+                  <NavDropdown title="About" className="simple-dropdown" autoClose="outside">
+                    <NavDropdown.Item as={Link} to="/about/overview">Overview</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/about/tribes">Tribes</NavDropdown.Item>
+                  </NavDropdown>
+
+                  {/* EXPLORE – FLYOUT */}
+                  <NavDropdown title="Explore" className="simple-dropdown" autoClose="outside">
+                    <NavDropdown.Item as={Link} to="/explore/destinations">Destinations</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/explore/adventure">Adventure</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/explore/culture">Culture & Lifestyle</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/explore/festivals">Festivals</NavDropdown.Item>
+                  </NavDropdown>
+
+                  {/* PLAN – FLYOUT */}
+                  <NavDropdown title="Plan" className="simple-dropdown" autoClose="outside">
+                    <NavDropdown.Item as={Link} to="/plan/info">Travel Info</NavDropdown.Item>
+                    <NavDropdown.Item >Travel by Type</NavDropdown.Item>
+                    <NavDropdown.Item >Stays</NavDropdown.Item>
+                    <NavDropdown.Item >Itenaries</NavDropdown.Item>
+                  </NavDropdown>
+
+                </Nav>
+
             </div>
 
             <Nav className="nav-icons">

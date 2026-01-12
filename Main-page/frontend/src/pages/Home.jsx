@@ -7,6 +7,7 @@ import Section4 from './HomePages/Section4.jsx'
 import Section5 from './HomePages/Section5.jsx'
 import Section6 from './HomePages/Section6.jsx'
 
+
 function Home() {
   return (
     <Layout>

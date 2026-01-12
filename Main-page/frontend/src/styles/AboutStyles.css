@@ -1,0 +1,384 @@
+/* -----overview page --------- */
+/* HERO SECTION */
+.about-hero {
+  position: relative;
+  height: 55vh; /* 🔥 controls image height */
+  width: 100%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dark overlay */
+.about-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 10, 22, 0.35),
+    rgba(5, 10, 22, 0.75)
+  );
+  z-index: 1;
+}
+
+/* Text on image */
+.about-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 0 1.5rem;
+  margin-top: 110px;
+}
+
+.about-hero-content h1 {
+  font-size: 3rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-hero-content p {
+  margin-top: 0.8rem;
+  font-size: 1.1rem;
+  opacity: 0.85;
+  font-style: italic;
+}
+
+/* CONTENT SECTION */
+
+.about-content {
+  background: linear-gradient(135deg, #050A16, #070d1a);
+  padding: 5rem 2rem; /* vertical + small mobile padding */
+}
+
+.about-content-inner {
+  max-width: 900px;   /* 👈 controls left/right blank space */
+  margin: 0 auto;     /* center horizontally */
+  text-align: center;
+}
+
+.about-content-inner p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+.about-map {
+  margin-top: 4rem;              /* space below paragraph */
+  display: flex;
+  justify-content: center;
+}
+
+.about-map img {
+  width: 100%;
+  max-width: 950px;              /* 👈 controls map size */
+  height: auto;
+
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+
+  opacity: 0.95;
+}
+@media (max-width: 768px) {
+  .about-map {
+    margin-top: 3rem;
+  }
+
+  .about-map img {
+    max-width: 100%;
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-hero {
+    height: 45vh;
+  }
+
+  .about-hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-hero-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    height: 40vh;
+  }
+
+  .about-hero-content h1 {
+    font-size: 1.8rem;
+  }
+}
+
+.regions-section {
+  background: linear-gradient(135deg, #050A16, #070d1a);
+  padding: 5rem 0;
+}
+
+.regions-container {
+  max-width: 1100px;   /* controls left & right blank space */
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Each region block */
+.region-block {
+  margin-bottom: 3.5rem;
+}
+
+/* Sub-heading */
+.region-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+/* Decorative underline */
+.region-title::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: var(--bg-coffee);
+  margin-top: 0.6rem;
+}
+
+/* Description */
+.region-description {
+  max-width: 600px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+}
+@media (max-width: 768px) {
+  .region-title {
+    font-size: 1.35rem;
+  }
+
+  .region-description {
+    font-size: 0.95rem;
+  }
+}
+
+.region-row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 4rem;
+  align-items: flex-start;
+  margin-top: 5rem;
+}
+
+/* LEFT */
+.region-text {
+  max-width: 520px;
+}
+
+/* RIGHT */
+.region-carousel {
+  overflow: hidden;
+  position: relative;
+  margin-top: 0.2rem;
+}
+.carousel-track {
+  display: flex;
+  gap: 1.4rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+}
+
+.carousel-track::-webkit-scrollbar {
+  visibility: hidden;
+}
+.place-card {
+  min-width: 260px;
+  height: 240px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  background: #000;
+
+}
+
+
+.place-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.place-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: flex-end;
+  padding: 1.2rem;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.35),
+    transparent
+  );
+
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+
+  opacity: 0.85;
+   transform: translateY(14px);
+
+    transition:
+    background 0.35s ease,
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+.place-card:hover .place-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.45),
+    transparent
+  );
+
+  transform: translateY(0); /* text slides up */
+  opacity: 1;               /* text more prominent */
+}
+
+
+
+@media (max-width: 900px) {
+  .region-row {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .region-text {
+    max-width: 100%;
+  }
+
+  .place-card {
+    min-width: 220px;
+    height: 280px;
+  }
+}
+
+
+
+
+/* tribess--------------------- */
+
+.tribes-section {
+  background: linear-gradient(135deg, #050A16, #070d1a);
+  padding: 6rem 2rem;
+}
+
+/* MAIN GRID */
+.tribes-grid {
+  max-width: 1200px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 220px;
+  gap: 1.4rem;
+}
+
+/* BASE CARD */
+.tribe-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #000;
+}
+
+.tribe-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tribe-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.3rem;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.35),
+    transparent
+  );
+}
+
+.tribe-overlay h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.tribe-overlay p {
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.85);
+  opacity: 0.5;
+}
+
+/* ===== EXPLICIT PLACEMENT (MATCHES YOUR IMAGE) ===== */
+
+/* Row 1 */
+.angami { grid-column: 1 / span 4; grid-row: 1 / span 2; }
+.ao { grid-column: 5 / span 2; grid-row: 1; }
+.lotha { grid-column: 5 / span 2; grid-row: 2; }
+
+/* Row 3 */
+.konyak { grid-column: 1 / span 2; grid-row: 3 / span 2; }
+.sumi { grid-column: 3 / span 2; grid-row: 3 /span 2; }
+.chakhesang { grid-column: 5 / span 2; grid-row: 3 /span 2; }
+
+/* Row 4 */
+.phom { grid-column: 1 / span 4; grid-row: 5; }
+.rengma { grid-column: 5 / span 2; grid-row: 5; }
+
+/* Row 5 */
+.yimkhiung { grid-column: 1 / span 2; grid-row: 6; }
+.sangtam { grid-column: 3 / span 2; grid-row: 6; }
+.khiamniungan { grid-column: 5 / span 2; grid-row: 6; }
+
+/* Row 6 (small tiles) */
+.zeliang { grid-column: 1 / span 2; grid-row: 7; }
+.pochury { grid-column: 3 / span 2; grid-row: 7; }
+.chang { grid-column: 5 / span 2; grid-row: 7; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .tribes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 220px;
+  }
+
+  .tribe-card {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+}
