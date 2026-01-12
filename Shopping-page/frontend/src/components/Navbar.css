@@ -105,7 +105,8 @@
   font-size: 1.2rem;
 }
 
-.ngl-right-icons li {
+.ngl-right-icons li a {
+  color: #fff;
   cursor: pointer;
 }
 
@@ -136,6 +137,34 @@
 /* Rotate when open */
 .ngl-arrow.open {
   transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: rgb(0, 0, 0);
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  width: 200px;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+}
+
+.dropdown-menu li {
+  padding: 10px 16px;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #ffffff;
+  display: block;
+}
+
+.dropdown-menu li:hover {
+  background: #f4f4f4;
 }
 
 .ngl-left-menu a,

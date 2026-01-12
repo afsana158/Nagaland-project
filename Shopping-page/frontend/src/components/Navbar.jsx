@@ -46,9 +46,29 @@ export default function Navbar() {
               <Link to="/shop">SHOP BY CATEGORY</Link>
               <span
                 className={`ngl-arrow ${openMenu === "shop" ? "open" : ""}`}
+                onClick={(e) => {
+                  e.stopPropagation(); // prevent link click
+                  toggleMenu("shop");
+                }}
               >
                 ▾
               </span>
+              {openMenu === "shop" && (
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link to="/shop/jewellery">Jewellery</Link>
+                  </li>
+                  <li>
+                    <Link to="/shop/souvenirs">Souvenirs</Link>
+                  </li>
+                  <li>
+                    <Link to="/shop/handlooms">Handlooms</Link>
+                  </li>
+                  <li>
+                    <Link to="/shop/naga-crafts">Naga Crafts</Link>
+                  </li>
+                </ul>
+              )}
             </li>
 
             <li onClick={() => toggleMenu("gifting")}>
@@ -71,7 +91,9 @@ export default function Navbar() {
           {/* RIGHT ICONS */}
           <ul className="ngl-right-icons">
             <li>
-              <FiUser />
+              <Link to="/auth">
+                <FiUser />
+              </Link>
             </li>
             <li>
               <FiHeart />

@@ -3,10 +3,10 @@ import "./About.css";
 import textileImg from "../assets/craftsBanner.jpg";
 import bambooImg from "../assets/bambooArtist.png";
 import jewelryImg from "../assets/WomenArtist.webp";
-import artisanVideo from "../assets/NagalandArtisanVideo.mp4";
-import handwovenVideo from "../assets/HandwovenTextilesVideo.mp4";
-import bambooVideo from "../assets/BambooCraftVideo.mp4";
-import People from "../assets/PeopleofNagaland.jpg";
+// import artisanVideo from "../assets/NagalandArtisanVideo.mp4";
+// import handwovenVideo from "../assets/HandwovenTextilesVideo.mp4";
+// import bambooVideo from "../assets/BambooCraftVideo.mp4";
+import People from "../assets/best-places-to-visit.webp";
 
 export default function About() {
   // Scroll animation using IntersectionObserver
@@ -32,7 +32,7 @@ export default function About() {
     <main className="about-page">
       {/* HERO */}
       <section
-        className="about-hero"
+        className="about-hero-wrapper"
         style={{ backgroundImage: `url(${People})` }}
       >
         <div className="about-hero-overlay">
@@ -42,22 +42,35 @@ export default function About() {
             heritage, culture, and artisanal excellence.
           </p>
         </div>
+        <div className="about-story reveal">
+          <h2>Our Story</h2>
+          <p>
+            Nagacrafts is a celebration of the indigenous artistry of Nagaland —
+            a land rich in culture, tradition, and untold stories. Rooted in
+            centuries-old practices, our journey began with a simple idea: to
+            preserve and share the craftsmanship of tribal communities that
+            often goes unnoticed beyond their villages.
+          </p>
+          <p>
+            Across the hills of Nagaland, art is not created for display alone —
+            it is a way of life. From weaving textiles on traditional looms to
+            carving masks and shaping bamboo by hand, these skills are inherited
+            through generations, passed down as stories, rituals, and identity.
+            Nagacrafts bridges this heritage with the modern world. We work
+            closely with artisans to ensure their creations are valued fairly,
+            their stories are heard, and their traditions continue to thrive in
+            a rapidly changing world.
+          </p>
+
+          <p>
+            Every product you find here carries more than craftsmanship — it
+            carries the spirit of a community, the patience of handmade work,
+            and a promise to keep culture alive.
+          </p>
+        </div>
       </section>
 
       {/* STORY */}
-      <section className="about-section dark reveal">
-        <h2>Our Story</h2>
-        <p>
-          Nagacrafts is a celebration of the indigenous artistry of Nagaland.
-          Rooted in centuries-old traditions, our platform brings together
-          handcrafted jewellery, wooden masks, bamboo crafts, and textiles made
-          by skilled tribal artisans.
-        </p>
-        <p>
-          Each product tells a story — of community, identity, and craftsmanship
-          passed down through generations.
-        </p>
-      </section>
 
       {/* ARTISANS */}
       <section className="about-section light reveal">
@@ -82,7 +95,7 @@ export default function About() {
       </section>
 
       {/* VIDEO / GALLERY */}
-      <section className="about-section dark reveal">
+      {/* <section className="about-section dark reveal">
         <h2>Craft in Motion</h2>
         <div className="media-grid">
           <div className="media-box">
@@ -98,10 +111,10 @@ export default function About() {
             <span>Handwoven Textiles</span>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* WHY US */}
-      <section className="about-section light reveal">
+      <section className="about-section dark reveal">
         <h2>Why Choose Nagacrafts?</h2>
         <ul className="why-list">
           <li>✔ 100% Authentic & Handcrafted</li>

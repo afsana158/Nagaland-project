@@ -1,56 +1,56 @@
-.about-page {
-  font-family: "Poppins", sans-serif;
-}
-
-/* HERO */
-.about-hero {
-  height: 60vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.6),
-      rgba(240, 240, 240, 0.6)
-    ),
-    url("../assets/about-bg.jpg") center/cover no-repeat;
-  color: rgb(0, 0, 0);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+/* HERO + STORY WRAPPER */
+.about-hero-wrapper {
+  min-height: 120vh;
+  background-size: cover;
+  background-position: center;
   position: relative;
-  isolation: isolate;
+  color: white;
+  padding-bottom: 120px;
 }
 
-.about-hero::before {
+/* DARK OVERLAY */
+.about-hero-wrapper::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65); /* adjust here */
+  background: rgba(0, 0, 0, 0.65);
   z-index: 1;
 }
 
+/* HERO TEXT */
 .about-hero-overlay {
   position: relative;
   z-index: 2;
-  color: #ffffff;
   text-align: center;
-  max-width: 720px;
-  padding: 0 20px;
+  padding: 150px 30px 80px;
+  max-width: 800px;
+  margin: auto;
 }
 
 .about-hero-overlay h1 {
   font-size: 3rem;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
-.about-hero h1 {
-  font-size: 3rem;
-  letter-spacing: 3px;
+.about-hero-overlay p {
+  font-size: 1.1rem;
 }
 
-.about-hero p {
-  max-width: 700px;
-  margin-top: 10px;
-  font-size: 1.05rem;
+/* STORY CARD ON SAME IMAGE */
+.about-story {
+  position: relative;
+  z-index: 2;
+  background: #000000;
+  color: #ffff;
+  max-width: 900px;
+  margin: 80px auto 120px;
+  padding: 60px;
+  border-radius: 10px;
+}
+
+.about-story h2 {
+  margin-bottom: 20px;
+  letter-spacing: 2px;
 }
 
 /* SECTIONS */
@@ -61,12 +61,12 @@
 }
 
 .about-section.dark {
-  background: #fbf8f8;
-  color: rgb(0, 0, 0);
+  background: #0f0e0e;
+  color: rgb(255, 255, 255);
 }
 
 .about-section.light {
-  background: #1c1c1c;
+  background: #272626;
   color: #f0f0f0;
 }
 .about-section h2 {
@@ -77,6 +77,10 @@
 .about-section p {
   max-width: 900px;
   line-height: 1.8;
+}
+
+.about-page {
+  font-family: "Poppins", sans-serif;
 }
 
 /* ARTISANS */

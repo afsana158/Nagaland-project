@@ -5,6 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Layout from "./components/Layout.jsx";
+import Auth from "./components/Auth.jsx";
 
 function App() {
   return (
@@ -16,6 +17,14 @@ function App() {
           element={
             <Layout>
               <About />
+            </Layout>
+          }
+        />
+        <Route
+          path="/auth"
+          element={
+            <Layout>
+              <Auth />
             </Layout>
           }
         />
