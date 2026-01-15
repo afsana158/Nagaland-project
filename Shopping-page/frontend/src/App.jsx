@@ -6,6 +6,10 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Layout from "./components/Layout.jsx";
 import Auth from "./components/Auth.jsx";
+import Cart from "./pages/Cart.jsx";
+import Wishlist from "./pages/Wishlist.jsx";
+import Search from "./pages/Search.jsx";
+import CategoryPage from "./pages/CategoryPage.jsx";
 
 function App() {
   return (
@@ -28,8 +32,39 @@ function App() {
             </Layout>
           }
         />
-        {/* <Route path="/shop" element={<Shop />} />
-        <Route path="/gifting" element={<Gifting />} /> */}
+        <Route
+          path="/cart"
+          element={
+            <Layout>
+              <Cart />
+            </Layout>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <Layout>
+              <Wishlist />
+            </Layout>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <Layout>
+              <Search />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/shop/:category"
+          element={
+            <Layout>
+              <CategoryPage />
+            </Layout>
+          }
+        />
       </Routes>
     </>
   );

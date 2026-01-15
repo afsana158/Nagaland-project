@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { useProducts } from "../context/ProductContext";
+import { useNavigate } from "react-router-dom";
 import { FiUser, FiHeart, FiShoppingCart, FiSearch } from "react-icons/fi";
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
   const [hideNav, setHideNav] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const { searchQuery, setSearchQuery } = useProducts();
+  const navigate = useNavigate();
 
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
@@ -71,15 +76,6 @@ export default function Navbar() {
               )}
             </li>
 
-            <li onClick={() => toggleMenu("gifting")}>
-              GIFTING
-              <span
-                className={`ngl-arrow ${openMenu === "gifting" ? "open" : ""}`}
-              >
-                ▾
-              </span>
-            </li>
-
             <li onClick={() => toggleMenu("about")}>
               <Link to="/about">ABOUT</Link>
             </li>
@@ -96,15 +92,36 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <FiHeart />
+              <Link to="/wishlist">
+                <FiHeart />
+              </Link>
             </li>
             <li>
-              <FiShoppingCart />
+              <Link to="/cart">
+                <FiShoppingCart />
+              </Link>
             </li>
-            <li>
+            <li onClick={() => setShowSearch(!showSearch)}>
               <FiSearch />
             </li>
           </ul>
+          {showSearch && (
+            <div className="search-box">
+              <input
+                type="text"
+                placeholder="Search jewellery, handlooms, crafts..."
+                value={searchQuery}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setSearchQuery(value);
+
+                  if (value.trim()) {
+                    navigate(`/search?q=${encodeURIComponent(value)}`);
+                  }
+                }}
+              />
+            </div>
+          )}
         </div>
       </nav>
 

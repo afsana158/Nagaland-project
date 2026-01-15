@@ -3,6 +3,7 @@ import "./About.css";
 import textileImg from "../assets/craftsBanner.jpg";
 import bambooImg from "../assets/bambooArtist.png";
 import jewelryImg from "../assets/WomenArtist.webp";
+import nagaGirl from "../assets/Lotha_Naga_girl.jpg";
 // import artisanVideo from "../assets/NagalandArtisanVideo.mp4";
 // import handwovenVideo from "../assets/HandwovenTextilesVideo.mp4";
 // import bambooVideo from "../assets/BambooCraftVideo.mp4";
@@ -73,24 +74,48 @@ export default function About() {
       {/* STORY */}
 
       {/* ARTISANS */}
-      <section className="about-section light reveal">
-        <h2>Artisans of Nagaland</h2>
-        <p>
-          Our artisans come from remote villages across Nagaland. Their skills
-          are inherited, not taught in classrooms. Each piece is handmade with
-          patience, care, and cultural pride.
-        </p>
+      <section className="artisans-editorial reveal">
+        {/* LEFT TEXT */}
+        <div className="artisans-text">
+          <h2>Artisans of Nagaland</h2>
 
-        <div className="artisan-grid">
-          <div className="artisan-card">
-            <img src={textileImg} alt="Textile" />
-          </div>
-          <div className="artisan-card">
-            <img src={bambooImg} alt="Bamboo Weavers" />
-          </div>
-          <div className="artisan-card">
-            <img src={jewelryImg} alt="Jewellery Makers" />
-          </div>
+          <p>
+            Across the hills and valleys of Nagaland, craftsmanship is not
+            merely a profession — it is a way of life. Artisans inherit their
+            skills through generations, shaped by culture, community, and
+            tradition.
+          </p>
+
+          <p>
+            From handwoven textiles and bamboo crafts to tribal jewellery, every
+            creation reflects patience, identity, and harmony with nature. No
+            two pieces are ever the same — each carries the mark of the hands
+            that shaped it.
+          </p>
+
+          <p>
+            By supporting these artisans, Nagacrafts ensures fair recognition,
+            sustainable livelihoods, and the preservation of indigenous
+            knowledge in a rapidly modernising world.
+          </p>
+
+          <p>
+            Beyond skill and tradition lies a profound relationship with land
+            and community. The rhythms of nature, ancestral knowledge, and
+            collective memory influence every design and motif. In an age of
+            mass production, these artisans choose patience and purpose—creating
+            pieces that honour heritage while quietly resisting the loss of
+            cultural identity.
+          </p>
+        </div>
+
+        {/* RIGHT IMAGE GRID */}
+        <div className="artisans-gallery">
+          <img src={People} alt="Artisan at work" className="img-tall" />
+          <img src={textileImg} alt="Textile craft" />
+          <img src={bambooImg} alt="Bamboo craft" />
+          <img src={jewelryImg} alt="Jewellery making" />
+          <img src={nagaGirl} alt="Lotha Naga" />
         </div>
       </section>
 

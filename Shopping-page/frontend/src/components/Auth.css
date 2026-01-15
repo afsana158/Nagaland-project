@@ -1,6 +1,6 @@
 .auth-page {
   min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,14 +9,15 @@
 
 /* Card */
 .auth-card {
-  background: #333333;
+  background: #111;
   color: #fff;
   width: 100%;
   max-width: 420px;
-  padding: 60px 50px;
-  margin-top: 130px;
+  padding: 50px 40px;
   border-radius: 10px;
+  border: 1px solid #222;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  margin-top: 120px; /* pushed downward */
 }
 
 /* Heading */
@@ -24,6 +25,7 @@
   text-align: center;
   margin-bottom: 30px;
   letter-spacing: 2px;
+  color: #bca75e; /* yellow heading */
 }
 
 /* Inputs */
@@ -31,7 +33,7 @@
   width: 100%;
   padding: 14px;
   margin-bottom: 16px;
-  background: #111;
+  background: #000;
   border: 1px solid #333;
   color: #fff;
   border-radius: 6px;
@@ -40,18 +42,18 @@
 }
 
 .auth-card input::placeholder {
-  color: #aaa;
+  color: #999;
 }
 
 .auth-card input:focus {
-  border-color: #fff;
+  border-color: #f5c518; /* yellow focus */
 }
 
 /* Button */
 .auth-card button {
   width: 100%;
   padding: 14px;
-  background: #fff;
+  background: #f5c518; /* yellow CTA */
   color: #000;
   border: none;
   border-radius: 6px;
@@ -62,18 +64,19 @@
 }
 
 .auth-card button:hover {
-  background: #eaeaea;
+  background: #e0b315;
 }
 
-/* Switch */
+/* Switch text */
 .auth-switch {
   text-align: center;
   margin-top: 20px;
   font-size: 0.9rem;
+  color: #ccc;
 }
 
 .auth-switch span {
-  color: #fff;
+  color: #f5c518;
   font-weight: 600;
   cursor: pointer;
   margin-left: 6px;
