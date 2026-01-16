@@ -1,0 +1,315 @@
+/* HERO SECTION */
+.about-hero {
+  position: relative;
+  height: 55vh; /* 🔥 controls image height */
+  width: 100%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dark overlay */
+.about-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 10, 22, 0.35),
+    rgba(5, 10, 22, 0.75)
+  );
+  z-index: 1;
+}
+
+/* Text on image */
+.about-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 0 1.5rem;
+  margin-top: 110px;
+}
+
+.about-hero-content h1 {
+  font-size: 3rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-hero-content p {
+  margin-top: 0.8rem;
+  font-size: 1.1rem;
+  opacity: 0.85;
+  font-style: italic;
+}
+@media (max-width: 768px) {
+  .about-hero {
+    height: 45vh;
+  }
+
+  .about-hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-hero-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    height: 40vh;
+  }
+
+  .about-hero-content h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* ================= DESTINATIONS CONTENT ================= */
+
+.destinations-content {
+  background: linear-gradient(135deg, #050A16, #070d1a);
+  padding: 5rem 6rem;
+}
+
+/* CATEGORY BLOCK */
+.destination-category {
+  max-width: 1200px;
+  margin: 0 auto 4.5rem;
+}
+
+/* CATEGORY HEADING */
+.category-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.category-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--bg-coffee);
+  margin-top: 0.6rem;
+}
+
+/* GRID */
+.destination-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* CARD */
+.destination-card {
+  position: relative;
+  height: 360px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+}
+
+.destination-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* OVERLAY */
+.destination-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.4rem;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.35),
+    transparent
+  );
+
+  transition: background 0.4s ease;
+}
+
+.destination-overlay h3 {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+    .destinations-content{
+    padding: 2rem 3rem;
+    }
+  .destination-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+   .destinations-content{
+    padding: 2rem 1rem;
+   }
+  .destination-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .destination-card {
+    height: 300px;
+  }
+}
+
+/* ===== SLIDE-IN DESTINATION SIDEBAR ===== */
+
+.destination-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 40%;
+  background: #070d1a;
+  z-index: 1200;
+
+  transform: translateX(-100%);
+  transition: transform 0.45s ease;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+/* 
+  display: flex;
+  flex-direction: column; */
+}
+/* ===== Custom Scrollbar ===== */
+.destination-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.destination-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.destination-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+}
+
+.destination-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Firefox */
+.destination-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.25) transparent;
+}
+
+.destination-sidebar.active {
+  transform: translateX(0);
+}
+
+/* IMAGE */
+.destination-sidebar img {
+  width: 100%;
+  height: 40%;
+  object-fit: cover;
+}
+
+/* CONTENT */
+.sidebar-content {
+  padding: 2rem;
+  color: #fff;
+}
+
+.sidebar-content h2 {
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.sidebar-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* CLOSE BUTTON */
+.sidebar-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* OVERLAY */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1100;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .destination-sidebar {
+    width: 100%;
+
+  }
+  .destination-sidebar img{
+    height: 45%;
+  }
+}
+.weather-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.2rem 1.4rem;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.02)
+  );
+
+  color: #fff;
+}
+
+.weather-box strong {
+  font-size: 1rem;
+}
+
+.weather-box p {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-top: 0.2rem;
+  text-transform: capitalize;
+}
+
+.weather-temp {
+  font-size: 2rem;
+  font-weight: 600;
+}   
