@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { useProducts } from "../context/ProductContext";
 import { useNavigate } from "react-router-dom";
+import { categories } from "../data/categories";
 import { FiUser, FiHeart, FiShoppingCart, FiSearch } from "react-icons/fi";
 
 export default function Navbar() {
@@ -47,31 +48,32 @@ export default function Navbar() {
               <Link to="/">HOME</Link>
             </li>
 
-            <li onClick={() => toggleMenu("shop")}>
-              <Link to="/shop">SHOP BY CATEGORY</Link>
+            <li className="shop-menu" onClick={() => toggleMenu("shop")}>
+              <span className="shop-label">SHOP BY CATEGORY</span>
+
               <span
                 className={`ngl-arrow ${openMenu === "shop" ? "open" : ""}`}
-                onClick={(e) => {
-                  e.stopPropagation(); // prevent link click
-                  toggleMenu("shop");
-                }}
               >
                 ▾
               </span>
+
               {openMenu === "shop" && (
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link to="/shop/jewellery">Jewellery</Link>
-                  </li>
-                  <li>
-                    <Link to="/shop/souvenirs">Souvenirs</Link>
-                  </li>
-                  <li>
-                    <Link to="/shop/handlooms">Handlooms</Link>
-                  </li>
-                  <li>
-                    <Link to="/shop/naga-crafts">Naga Crafts</Link>
-                  </li>
+                <ul
+                  className="dropdown-menu"
+                  onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+                >
+                  {categories.map((cat) => (
+                    <li
+                      key={cat.slug}
+                      onClick={() => {
+                        navigate(`/shop/${cat.slug}`);
+                        setOpenMenu(null);
+                      }}
+                      className="dropdown-item"
+                    >
+                      {cat.name}
+                    </li>
+                  ))}
                 </ul>
               )}
             </li>

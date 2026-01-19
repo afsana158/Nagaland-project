@@ -1,6 +1,6 @@
 .category-page {
   min-height: 100vh;
-  background: #000;
+  background: #4a4646;
   color: #fff;
   padding: 140px 80px 80px;
   font-family: "Poppins", sans-serif;
@@ -10,7 +10,8 @@
   text-align: center;
   margin-bottom: 60px;
   letter-spacing: 2px;
-  color: #f5c518;
+  color: #eceae3;
+  font-size: 3rem;
 }
 
 .empty-category {
@@ -54,7 +55,7 @@
   color: #fff;
 }
 
-.price {
+.p {
   color: #f5c518;
   font-weight: 600;
   margin-bottom: 14px;
@@ -91,7 +92,9 @@
 .heart-icon {
   color: #aaa; /* default grey */
   font-size: 1.3rem;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.2s ease;
 }
 
 /* Active (in wishlist) */
@@ -103,4 +106,43 @@
 .heart-icon:hover {
   transform: scale(1.1);
   color: #f5c518;
+}
+
+/* Quantity control container */
+.qty-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* - and + buttons */
+.qty-control button {
+  background: #f5c518; /* yellow */
+  color: #000; /* black text */
+  border: none;
+  width: 34px; /* compact size */
+  height: 30px;
+  border-radius: 6px; /* rounded box, not circle */
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-control button:hover {
+  background: #e0b315;
+}
+
+/* Quantity number */
+.qty-control span {
+  min-width: 22px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff; /* white number */
 }

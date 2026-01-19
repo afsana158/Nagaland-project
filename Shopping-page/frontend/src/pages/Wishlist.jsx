@@ -8,7 +8,7 @@ export default function Wishlist() {
 
   return (
     <div className="wishlist-page">
-      <h1>Your Wishlist</h1>
+      <h1>YOUR WISHLIST</h1>
 
       {wishlistItems.length === 0 ? (
         <p className="empty-wishlist">Your wishlist is empty.</p>

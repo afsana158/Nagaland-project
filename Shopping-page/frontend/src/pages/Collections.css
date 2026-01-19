@@ -5,7 +5,7 @@
 }
 
 .section-title {
-  font-size: 1.1rem;
+  font-size: 2.1rem;
   letter-spacing: 3px;
   margin-bottom: 60px;
   font-weight: 500;
@@ -38,6 +38,7 @@
   font-size: 0.95rem;
   font-weight: 500;
   margin-bottom: 6px;
+  color: #c3baba;
 }
 
 .brand {
@@ -50,6 +51,7 @@
 .price {
   font-size: 0.9rem;
   font-weight: 500;
+  color: #c3baba;
 }
 
 .view-all-btn {

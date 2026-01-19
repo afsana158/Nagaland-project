@@ -8,15 +8,15 @@ import { useProducts } from "../context/ProductContext";
 import "./CategoryPage.css";
 
 const categoryTitles = {
-  jewellery: "Jewellery",
-  souvenirs: "Souvenirs",
-  handlooms: "Handlooms",
-  "naga-crafts": "Naga Crafts",
+  jewellery: "JEWELLERY",
+  souvenirs: "SOUVENIRS",
+  handlooms: "HANDLOOMS",
+  "naga-crafts": "NAGA CRAFTS",
 };
 
 export default function CategoryProducts() {
   const { category } = useParams();
-  const { addToCart } = useCart();
+  const { addToCart, updateQty, getCartItem } = useCart();
   const { searchQuery } = useProducts();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
@@ -52,34 +52,53 @@ export default function CategoryProducts() {
         <p className="empty-category">No products found.</p>
       ) : (
         <div className="product-grid">
-          {products.map((product) => (
-            <div className="product-card" key={product.id}>
-              <div className="wishlist-icon">
-                {isInWishlist(product.id) ? (
-                  <FaHeart
-                    className="heart-icon active"
-                    onClick={() => removeFromWishlist(product.id)}
-                  />
-                ) : (
-                  <FiHeart
-                    className="heart-icon"
-                    onClick={() => addToWishlist(product)}
-                  />
-                )}
-              </div>
+          {products.map((product) => {
+            const cartItem = getCartItem(product.id);
 
-              <img
-                src={`http://localhost:5000/images/${product.image}`}
-                alt={product.name}
-              />
+            return (
+              <div className="product-card" key={product.id}>
+                <div className="wishlist-icon">
+                  {isInWishlist(product.id) ? (
+                    <FaHeart
+                      className="heart-icon active"
+                      onClick={() => removeFromWishlist(product.id)}
+                    />
+                  ) : (
+                    <FiHeart
+                      className="heart-icon"
+                      onClick={() => addToWishlist(product)}
+                    />
+                  )}
+                </div>
 
-              <div className="product-info">
-                <h3>{product.name}</h3>
-                <p className="price">₹{product.price}</p>
-                <button onClick={() => addToCart(product)}>Add to Cart</button>
+                <img
+                  src={`http://localhost:5000/images/${product.image}`}
+                  alt={product.name}
+                />
+
+                <div className="product-info">
+                  <h3>{product.name}</h3>
+                  <p className="p">₹{product.price}</p>
+
+                  {cartItem ? (
+                    <div className="qty-control">
+                      <button onClick={() => updateQty(product.id, -1)}>
+                        -
+                      </button>
+                      <span>{cartItem.quantity}</span>
+                      <button onClick={() => updateQty(product.id, 1)}>
+                        +
+                      </button>
+                    </div>
+                  ) : (
+                    <button onClick={() => addToCart(product)}>
+                      Add to Cart
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

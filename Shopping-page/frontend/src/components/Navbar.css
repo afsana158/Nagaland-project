@@ -112,7 +112,9 @@
 
 .ngl-right-icons li {
   cursor: pointer;
-  transition: transform 0.2s ease, color 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.3s ease;
 }
 
 .ngl-right-icons li:hover {
@@ -137,6 +139,14 @@
 /* Rotate when open */
 .ngl-arrow.open {
   transform: rotate(180deg);
+}
+.shop-menu {
+  cursor: pointer;
+  position: relative;
+}
+
+.shop-label {
+  cursor: pointer;
 }
 
 .dropdown-menu {

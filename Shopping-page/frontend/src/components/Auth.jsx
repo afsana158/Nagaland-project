@@ -7,7 +7,7 @@ export default function Auth() {
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <h2>{isLogin ? "Login" : "Create Account"}</h2>
+        <h2>{isLogin ? "LOGIN" : "Create Account"}</h2>
 
         <form>
           {!isLogin && <input type="text" placeholder="Full Name" />}
@@ -17,7 +17,7 @@ export default function Auth() {
 
           {!isLogin && <input type="password" placeholder="Confirm Password" />}
 
-          <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
+          <button type="submit">{isLogin ? "LOGIN" : "SIGN UP"}</button>
         </form>
 
         <p className="auth-switch">

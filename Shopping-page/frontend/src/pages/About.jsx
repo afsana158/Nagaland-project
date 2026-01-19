@@ -4,9 +4,6 @@ import textileImg from "../assets/craftsBanner.jpg";
 import bambooImg from "../assets/bambooArtist.png";
 import jewelryImg from "../assets/WomenArtist.webp";
 import nagaGirl from "../assets/Lotha_Naga_girl.jpg";
-// import artisanVideo from "../assets/NagalandArtisanVideo.mp4";
-// import handwovenVideo from "../assets/HandwovenTextilesVideo.mp4";
-// import bambooVideo from "../assets/BambooCraftVideo.mp4";
 import People from "../assets/best-places-to-visit.webp";
 
 export default function About() {
@@ -22,7 +19,7 @@ export default function About() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     elements.forEach((el) => observer.observe(el));
@@ -37,7 +34,7 @@ export default function About() {
         style={{ backgroundImage: `url(${People})` }}
       >
         <div className="about-hero-overlay">
-          <h1>About Nagacrafts</h1>
+          <h1>ABOUT NAGACRAFTS</h1>
           <p>
             Authentic handcrafted products from Nagaland, preserving tribal
             heritage, culture, and artisanal excellence.
@@ -118,25 +115,6 @@ export default function About() {
           <img src={nagaGirl} alt="Lotha Naga" />
         </div>
       </section>
-
-      {/* VIDEO / GALLERY */}
-      {/* <section className="about-section dark reveal">
-        <h2>Craft in Motion</h2>
-        <div className="media-grid">
-          <div className="media-box">
-            <video src={artisanVideo} autoPlay muted loop playsInline />
-            <span>Artisan at Work</span>
-          </div>
-          <div className="media-box">
-            <video src={bambooVideo} autoPlay muted loop playsInline />
-            <span>Bamboo Craft</span>
-          </div>
-          <div className="media-box">
-            <video src={handwovenVideo} autoPlay muted loop playsInline />
-            <span>Handwoven Textiles</span>
-          </div>
-        </div>
-      </section> */}
 
       {/* WHY US */}
       <section className="about-section dark reveal">
