@@ -19,7 +19,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setHideNav(window.scrollY > 200); // hide after 100px
+      setHideNav(window.scrollY > 500); // hide after 500px
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
