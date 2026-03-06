@@ -9,7 +9,9 @@ function Home() {
   return (
     <Layout>
       <Hero />
-      <ProductSlider />
+      <div id="products">
+        <ProductSlider />
+      </div>
       <TimelessCollectibles />
       <Chatbot />
     </Layout>

@@ -10,16 +10,40 @@ export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
   const [hideNav, setHideNav] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+
   const { searchQuery, setSearchQuery } = useProducts();
   const navigate = useNavigate();
+
+  // get logged in user
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const checkUser = () => {
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      setUser(storedUser);
+    };
+
+    checkUser();
+
+    window.addEventListener("storage", checkUser);
+
+    return () => window.removeEventListener("storage", checkUser);
+  }, []);
 
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/");
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      setHideNav(window.scrollY > 500); // hide after 500px
+      setHideNav(window.scrollY > 500);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -27,7 +51,7 @@ export default function Navbar() {
 
   return (
     <header className={`ngl-header ${hideNav ? "hide" : ""}`}>
-      {/* ----------------- TOP TAGLINE STRIP ----------------- */}
+      {/* TOP STRIP */}
       <div className="ngl-top-strip">
         <div className="ngl-container">
           <span>Unique, Handcrafted Products from Nagaland</span>
@@ -38,13 +62,12 @@ export default function Navbar() {
 
       <div className="ngl-separator"></div>
 
-      {/* ----------------- MAIN NAVBAR ----------------- */}
+      {/* MAIN NAVBAR */}
       <nav className="ngl-main-nav">
         <div className="ngl-container ngl-nav-grid">
           {/* LEFT MENU */}
           <ul className="ngl-left-menu">
             <li>
-              {" "}
               <Link to="/">HOME</Link>
             </li>
 
@@ -60,7 +83,7 @@ export default function Navbar() {
               {openMenu === "shop" && (
                 <ul
                   className="dropdown-menu"
-                  onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+                  onClick={(e) => e.stopPropagation()}
                 >
                   {categories.map((cat) => (
                     <li
@@ -78,7 +101,7 @@ export default function Navbar() {
               )}
             </li>
 
-            <li onClick={() => toggleMenu("about")}>
+            <li>
               <Link to="/about">ABOUT</Link>
             </li>
           </ul>
@@ -88,25 +111,74 @@ export default function Navbar() {
 
           {/* RIGHT ICONS */}
           <ul className="ngl-right-icons">
-            <li>
-              <Link to="/auth">
-                <FiUser />
-              </Link>
+            {/* USER */}
+            <li className="user-menu">
+              {user ? (
+                <>
+                  <div
+                    className="user-trigger"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleMenu("user");
+                    }}
+                  >
+                    <span className="shop-label">
+                      Hi, {user.name.split(" ")[0]}
+                    </span>
+
+                    <span
+                      className={`ngl-arrow ${openMenu === "user" ? "open" : ""}`}
+                    >
+                      ▾
+                    </span>
+                  </div>
+
+                  {openMenu === "user" && (
+                    <ul
+                      className="dropdown-menu"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <li
+                        onClick={() => {
+                          navigate("/profile");
+                          setOpenMenu(null);
+                        }}
+                      >
+                        Profile
+                      </li>
+
+                      <li onClick={handleLogout}>Logout</li>
+                    </ul>
+                  )}
+                </>
+              ) : (
+                <Link to="/auth">
+                  <FiUser />
+                </Link>
+              )}
             </li>
+
+            {/* WISHLIST */}
             <li>
               <Link to="/wishlist">
                 <FiHeart />
               </Link>
             </li>
+
+            {/* CART */}
             <li>
               <Link to="/cart">
                 <FiShoppingCart />
               </Link>
             </li>
+
+            {/* SEARCH */}
             <li onClick={() => setShowSearch(!showSearch)}>
               <FiSearch />
             </li>
           </ul>
+
+          {/* SEARCH BOX */}
           {showSearch && (
             <div className="search-box">
               <input

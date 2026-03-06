@@ -1,42 +1,96 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  // Add to cart
-  const addToCart = (item) => {
-    setCartItems((prev) => {
-      const existing = prev.find((i) => i.id === item.id);
+  const user = JSON.parse(localStorage.getItem("user"));
 
-      if (existing) {
-        return prev.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i,
-        );
-      }
+  useEffect(() => {
+    if (!user) return;
 
-      return [...prev, { ...item, quantity: 1 }];
-    });
+    axios
+      .get(`http://localhost:5000/api/cart/${user.email}`)
+      .then((res) => {
+        setCartItems(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const addToCart = async (item) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) {
+      alert("Please login first");
+      return;
+    }
+
+    try {
+      await axios.post("http://localhost:5000/api/cart/add", {
+        email: user.email,
+        productId: item.id,
+        quantity: 1,
+      });
+
+      setCartItems((prev) => {
+        const existing = prev.find((i) => i.product_id === item.id);
+
+        if (existing) {
+          return prev.map((i) =>
+            i.product_id === item.id ? { ...i, quantity: i.quantity + 1 } : i,
+          );
+        }
+
+        return [
+          ...prev,
+          {
+            ...item,
+            product_id: item.id,
+            quantity: 1,
+          },
+        ];
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  // Remove from cart
-  const removeFromCart = (id) => {
-    setCartItems((prev) => prev.filter((i) => i.id !== id));
+  const removeFromCart = async (productId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    console.log("Removing product", productId, "for user", user.email);
+
+    await axios.delete(
+      `http://localhost:5000/api/cart/remove/${productId}/${user.email}`,
+    );
+
+    setCartItems((prev) => prev.filter((i) => i.product_id !== productId));
   };
 
-  // Update quantity (auto-remove at 0)
-  const updateQty = (id, amount) => {
+  const updateQty = (productId, amount) => {
     setCartItems((prev) =>
       prev
-        .map((i) => (i.id === id ? { ...i, quantity: i.quantity + amount } : i))
+        .map((i) =>
+          i.product_id === productId
+            ? { ...i, quantity: i.quantity + amount }
+            : i,
+        )
         .filter((i) => i.quantity > 0),
     );
   };
 
-  // Get cart item by product id
-  const getCartItem = (id) => {
-    return cartItems.find((i) => i.id === id);
+  const getCartItem = (productId) => {
+    return cartItems.find((i) => i.product_id === productId);
+  };
+
+  const clearCart = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    await axios.delete(`http://localhost:5000/api/cart/clear/${user.email}`);
+
+    setCartItems([]);
   };
 
   return (
@@ -47,6 +101,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateQty,
         getCartItem,
+        clearCart,
       }}
     >
       {children}

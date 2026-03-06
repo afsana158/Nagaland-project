@@ -1,27 +1,30 @@
 const express = require("express");
 const router = express.Router();
-const products = require("../data/products");
+const db = require("../db");
 
-// GET /api/products
-// GET /api/products?category=jewellery
 router.get("/", (req, res) => {
   const { category, search } = req.query;
-  let filtered = products;
+
+  let sql = "SELECT * FROM products";
+  let values = [];
 
   if (category) {
-    filtered =filtered.filter(
-      (p) => p.category.toLowerCase() === category.toLowerCase()
-    );
-    return res.json(filtered);
+    sql += " WHERE category = ?";
+    values.push(category);
   }
 
   if (search) {
-    filtered = filtered.filter((p) =>
-      p.name.toLowerCase().includes(search.toLowerCase())
-    );
+    sql += category ? " AND" : " WHERE";
+    sql += " name LIKE ?";
+    values.push("%" + search + "%");
   }
 
-  res.json(filtered);
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    res.json(result);
+  });
 });
 
 module.exports = router;

@@ -10,6 +10,9 @@ import Cart from "./pages/Cart.jsx";
 import Wishlist from "./pages/Wishlist.jsx";
 import Search from "./pages/Search.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
+import Profile from "./pages/Profile.jsx";
+import Checkout from "./pages/Checkout.jsx";
+import OrderSuccess from "./pages/OrderSuccess.jsx";
 
 function App() {
   return (
@@ -62,6 +65,33 @@ function App() {
           element={
             <Layout>
               <CategoryPage />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <Layout>
+              <Profile />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/checkout"
+          element={
+            <Layout>
+              <Checkout />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/order-success"
+          element={
+            <Layout>
+              <OrderSuccess />
             </Layout>
           }
         />
