@@ -1,7 +1,26 @@
 import { Link } from "react-router-dom";
 import "./OrderSuccess.css";
+import { useEffect } from "react";
+import confetti from "canvas-confetti";
 
 export default function OrderSuccess() {
+  useEffect(() => {
+    const duration = 2000;
+    const animationEnd = Date.now() + duration;
+
+    const interval = setInterval(() => {
+      if (Date.now() > animationEnd) {
+        return clearInterval(interval);
+      }
+
+      confetti({
+        particleCount: 6,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+    }, 200);
+  }, []);
+
   return (
     <div className="success-page">
       <div className="success-card">

@@ -93,16 +93,15 @@ export default function Auth() {
           <button type="submit">{isLogin ? "LOGIN" : "SIGN UP"}</button>
         </form>
 
-        <div
-          style={{
-            marginTop: "20px",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <div className="auth-divider">
+          <span>OR</span>
+        </div>
+
+        <div className="google-login">
           <GoogleLogin
             onSuccess={handleGoogleSuccess}
             onError={() => console.log("Google Login Failed")}
+            text={isLogin ? "signin_with" : "signup_with"}
           />
         </div>
 

@@ -82,3 +82,22 @@
   margin-left: 6px;
   text-decoration: underline;
 }
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 22px 0;
+  color: #888;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #333;
+}
+
+.auth-divider span {
+  margin: 0 10px;
+  font-size: 0.85rem;
+}

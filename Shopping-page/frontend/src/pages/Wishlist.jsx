@@ -21,25 +21,29 @@ export default function Wishlist() {
                 alt={item.name}
               />
 
-              <h3>{item.name}</h3>
-              <p>₹{item.price}</p>
+              <div className="wishlist-info">
+                <h3>{item.name}</h3>
+                <p className="wishlist-price">₹{item.price}</p>
+              </div>
 
-              <button
-                className="wishlist-cart-btn"
-                onClick={() => {
-                  addToCart(item);
-                  removeFromWishlist(item.product_id || item.id);
-                }}
-              >
-                Move to Cart
-              </button>
+              <div className="wishlist-actions">
+                <button
+                  className="wishlist-cart-btn"
+                  onClick={() => {
+                    addToCart(item);
+                    removeFromWishlist(item.product_id || item.id);
+                  }}
+                >
+                  Move to Cart
+                </button>
 
-              <button
-                className="wishlist-remove-btn"
-                onClick={() => removeFromWishlist(item.product_id || item.id)}
-              >
-                Remove
-              </button>
+                <button
+                  className="wishlist-remove-btn"
+                  onClick={() => removeFromWishlist(item.product_id || item.id)}
+                >
+                  Remove
+                </button>
+              </div>
             </div>
           ))}
         </div>
