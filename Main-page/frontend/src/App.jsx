@@ -6,8 +6,9 @@ import Destinations from "./pages/ExplorePages/Destinations.jsx"
 import Adventure from "./pages/ExplorePages/Adventure.jsx"
 import Culture from "./pages/ExplorePages/Culture.jsx"
 import Festivals from "./pages/ExplorePages/Festivals.jsx"
-import Info from "./pages/PlanPages/Info.jsx"
-
+import TravelType from "./pages/PlanPages/TravelType.jsx"
+import Itenaries from "./pages/PlanPages/Itenaries.jsx"
+import Stays from "./pages/PlanPages/Stays.jsx"
 function App() {
   return (
     <BrowserRouter>
@@ -19,7 +20,9 @@ function App() {
         <Route path="/explore/adventure" element={<Adventure />} />
         <Route path="/explore/culture" element={<Culture />} />
         <Route path="/explore/festivals" element={<Festivals />} />
-        <Route path="/plan/info" element={<Info />} />
+        <Route path="/plan/traveltype" element={<TravelType />} />
+        <Route path="/plan/itenaries" element={<Itenaries />} />
+        <Route path="/plan/stays" element={<Stays />} />
       </Routes>
     </BrowserRouter>
   )

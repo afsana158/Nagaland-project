@@ -105,10 +105,10 @@ function Header() {
 
                   {/* PLAN – FLYOUT */}
                   <NavDropdown title="Plan" className="simple-dropdown" autoClose="outside">
-                    <NavDropdown.Item as={Link} to="/plan/info">Travel Info</NavDropdown.Item>
-                    <NavDropdown.Item >Travel by Type</NavDropdown.Item>
-                    <NavDropdown.Item >Stays</NavDropdown.Item>
-                    <NavDropdown.Item >Itenaries</NavDropdown.Item>
+                    
+                    <NavDropdown.Item as={Link} to="/plan/traveltype">Travel by Type</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/plan/stays">Stays</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/plan/itenaries">Itenaries</NavDropdown.Item>
                   </NavDropdown>
 
                 </Nav>
