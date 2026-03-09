@@ -70,7 +70,11 @@ function Header() {
           {/* MOBILE ICONS */}
           <div className="mobile-icons d-lg-none">
             <i className="bi bi-people"></i>
-            <i className="bi bi-cart3"></i>
+            <i
+              className="bi bi-cart3"
+              style={{ cursor: "pointer" }}
+              onClick={() => (window.location.href = "http://localhost:5174")}
+            ></i>
             <button className="menu-btn" onClick={() => setShowOffcanvas(true)}>
               <i className="bi bi-list"></i>
             </button>
@@ -137,7 +141,9 @@ function Header() {
               <Nav.Link>
                 <i className="bi bi-search"></i>
               </Nav.Link>
-              <Nav.Link>
+              <Nav.Link
+                onClick={() => (window.location.href = "http://localhost:5174")}
+              >
                 <i className="bi bi-cart3"></i>
               </Nav.Link>
             </Nav>
