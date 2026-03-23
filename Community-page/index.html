@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nagaland Community</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="nav-container">
+        <div class="logo">Nagaland<span>Community</span></div>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#">Home</a>
+          <a href="community.html">Community</a>
+
+          <div class="profile-menu">
+            <img
+              id="profilePic"
+              class="profile-pic"
+              src="images/user.png"
+              onclick="window.location.href = 'community.html'"
+            />
+          </div>
+        </nav>
+
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      </div>
+    </header>
+
+    <!-- HERO VIDEO -->
+    <section class="hero-video">
+      <video autoplay muted loop playsinline>
+        <source src="video/nagaland-dance.mp4" type="video/mp4" />
+      </video>
+
+      <div class="video-overlay"></div>
+
+      <div class="hero-content">
+        <h1>Spirit of Nagaland</h1>
+        <p>Celebrating culture, unity, and heritage</p>
+      </div>
+    </section>
+
+    <!-- TRENDING -->
+    <section class="trending-section fade-up">
+      <h2 class="padding">🔥 Trending Posts</h2>
+      <div id="trendingGrid" class="trending-grid"></div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="postModal" class="modal hidden" onclick="closeModal()">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal()">✖</span>
+        <img id="modalImg" />
+        <h2 id="modalTitle"></h2>
+        <p id="modalBody"></p>
+      </div>
+    </div>
+
+    <!-- ===== ABOUT (WITH SLIDER BACKGROUND) ===== -->
+    <section class="background_about fade-up">
+      <!-- BACKGROUND SLIDES -->
+      <div
+        class="bg-slide active"
+        style="background-image: url(&quot;images/bacground.jpg&quot;)"
+      ></div>
+      <div
+        class="bg-slide"
+        style="background-image: url(&quot;images/festival.jpg&quot;)"
+      ></div>
+      <div
+        class="bg-slide"
+        style="background-image: url(&quot;images/hornbill.jpg&quot;)"
+      ></div>
+
+      <!-- OVERLAY -->
+      <div class="about-overlay"></div>
+
+      <!-- CONTENT -->
+      <div class="about-content">
+        <h2>About Nagaland</h2>
+        <p>
+          Nagaland is a land of rich tribal heritage, colorful festivals,
+          warrior traditions, and strong community values.Nagaland is more than
+          just a place—it's a living tapestry of culture, courage, and
+          community. Home to 16 major tribes, each with its own identity, the
+          state thrives on traditions passed down through generations. The
+          rhythm of tribal music, the colors of traditional attire, and the
+          spirit of unity define its people. Whether it’s the grand Hornbill
+          Festival or everyday village life, Nagaland celebrates life with
+          pride, resilience, and deep-rooted values.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== CULTURE ===== -->
+    <section class="content fade-up">
+      <h2>Culture & Traditions</h2>
+
+      <div class="cards">
+        <div class="card">
+          <img src="images/hornbill.jpg" />
+          <p>Hornbill Festival represents unity among Naga tribes.</p>
+        </div>
+
+        <div class="card">
+          <img src="images/village.jpg" />
+          <p>Traditional villages reflect sustainable community living.</p>
+        </div>
+
+        <div class="card">
+          <img src="images/festival.jpg" />
+          <p>Each tribe has its own unique dance and attire.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>© 2026 Nagaland Community | Preserving Culture & Unity</footer>
+
+    <!-- JS -->
+    <script type="module" src="auth.js"></script>
+
+    <script>
+      // MOBILE MENU
+      function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("active");
+      }
+
+      // NAVBAR SCROLL
+      const navbar = document.querySelector(".navbar");
+
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("navbar-scrolled", window.scrollY > 50);
+      });
+
+      // SCROLL ANIMATION
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+
+      document.querySelectorAll(".fade-up").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // ===== ABOUT BACKGROUND SLIDER =====
+      const slides = document.querySelectorAll(".bg-slide");
+      let current = 0;
+
+      setInterval(() => {
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+      }, 3000);
+    </script>
+  </body>
+</html>
