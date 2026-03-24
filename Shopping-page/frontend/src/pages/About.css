@@ -1,56 +1,57 @@
-.about-page {
-  font-family: "Poppins", sans-serif;
-}
-
-/* HERO */
-.about-hero {
-  height: 60vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.6),
-      rgba(240, 240, 240, 0.6)
-    ),
-    url("../assets/about-bg.jpg") center/cover no-repeat;
-  color: rgb(0, 0, 0);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+/* HERO + STORY WRAPPER */
+.about-hero-wrapper {
+  min-height: 120vh;
+  background-size: cover;
+  background-position: center;
   position: relative;
-  isolation: isolate;
+  color: white;
+  padding-bottom: 120px;
 }
 
-.about-hero::before {
+/* DARK OVERLAY */
+.about-hero-wrapper::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65); /* adjust here */
+  background: rgba(0, 0, 0, 0.65);
   z-index: 1;
 }
 
+/* HERO TEXT */
 .about-hero-overlay {
   position: relative;
   z-index: 2;
-  color: #ffffff;
   text-align: center;
-  max-width: 720px;
-  padding: 0 20px;
+  padding: 150px 30px 80px;
+  max-width: 800px;
+  margin: auto;
 }
 
 .about-hero-overlay h1 {
   font-size: 3rem;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
-.about-hero h1 {
-  font-size: 3rem;
-  letter-spacing: 3px;
+.about-hero-overlay p {
+  font-size: 1.1rem;
 }
 
-.about-hero p {
-  max-width: 700px;
-  margin-top: 10px;
-  font-size: 1.05rem;
+/* STORY CARD ON SAME IMAGE */
+.about-story {
+  position: relative;
+  z-index: 2;
+  background: #325034;
+  color: #ffff;
+  max-width: 900px;
+  margin: 80px auto 120px;
+  padding: 60px;
+  border-radius: 10px;
+  margin-top: 0.2px;
+}
+
+.about-story h2 {
+  margin-bottom: 20px;
+  letter-spacing: 2px;
 }
 
 /* SECTIONS */
@@ -61,12 +62,12 @@
 }
 
 .about-section.dark {
-  background: #fbf8f8;
-  color: rgb(0, 0, 0);
+  background: #323232;
+  color: rgb(255, 255, 255);
 }
 
 .about-section.light {
-  background: #1c1c1c;
+  background: #272626;
   color: #f0f0f0;
 }
 .about-section h2 {
@@ -77,6 +78,10 @@
 .about-section p {
   max-width: 900px;
   line-height: 1.8;
+}
+
+.about-page {
+  font-family: "Poppins", sans-serif;
 }
 
 /* ARTISANS */
@@ -100,6 +105,59 @@
   border-radius: 5%;
   object-fit: cover;
   margin-bottom: 2px;
+}
+
+.artisans-editorial {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  padding: 120px 120px;
+  background: #000;
+  color: #bbb;
+}
+
+/* LEFT TEXT */
+.artisans-text h2 {
+  font-size: 2.4rem;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  color: #f5c518; /* yellow accent */
+}
+
+.artisans-text p {
+  line-height: 1.9;
+  margin-bottom: 22px;
+  max-width: 600px;
+}
+
+/* RIGHT IMAGE COLLAGE */
+.artisans-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 220px;
+  gap: 20px;
+}
+
+.artisans-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  filter: grayscale(10%);
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+/* Tall editorial image */
+.artisans-gallery .img-tall {
+  grid-row: span 2;
+}
+
+/* Hover effect */
+.artisans-gallery img:hover {
+  transform: scale(1.03);
+  filter: grayscale(0%);
 }
 
 /* MEDIA */
@@ -171,5 +229,14 @@
 
   .about-hero h1 {
     font-size: 2.2rem;
+  }
+
+  .artisans-editorial {
+    grid-template-columns: 1fr;
+    padding: 80px 30px;
+  }
+
+  .artisans-gallery {
+    grid-auto-rows: 200px;
   }
 }

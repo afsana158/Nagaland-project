@@ -19,7 +19,7 @@ const slides = [
     title: "Naga Tribal Crafts",
     subtitle: "Authentic Tribal Art from Nagaland",
     image: crafts,
-    slug: "crafts",
+    slug: "naga-crafts",
   },
   {
     id: 3,
@@ -40,16 +40,6 @@ const slides = [
 export default function CategoryHeroSlideshow() {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
-
-  // Auto slide
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     setCurrent((prev) => (prev + 1) % slides.length);
-  //   }, 10000);
-
-  //   return () => clearInterval(timer);
-  // }, []);
-
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % slides.length);
   };
@@ -69,7 +59,7 @@ export default function CategoryHeroSlideshow() {
           <div className="hero-card-overlay">
             <h1>{slide.title}</h1>
             <p>{slide.subtitle}</p>
-            <button onClick={() => navigate(`/shop?category=${slide.slug}`)}>
+            <button onClick={() => navigate(`/shop/${slide.slug}`)}>
               SHOP NOW
             </button>
           </div>

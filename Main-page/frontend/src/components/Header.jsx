@@ -7,47 +7,42 @@ import {
   NavDropdown,
   Offcanvas,
 } from "react-bootstrap";
-import { Link  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "./../assets/nagalandLogo1.webp";
 
 function Header() {
-  
-  
-
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isAtTop, setIsAtTop] = useState(true);
-  
-
 
   // mobile menu state
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const [activeMenu, setActiveMenu] = useState("main"); // main | about | explore | plan
 
   useEffect(() => {
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-    // navbar show / hide
-    if (currentScrollY > lastScrollY && currentScrollY > 100) {
-      setShowNavbar(false);
-    } else {
-      setShowNavbar(true);
-    }
+      // navbar show / hide
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
 
-    // top detection (STRICT)
-    if (currentScrollY === 0) {
-      setIsAtTop(true);
-    } else {
-      setIsAtTop(false);
-    }
+      // top detection (STRICT)
+      if (currentScrollY === 0) {
+        setIsAtTop(true);
+      } else {
+        setIsAtTop(false);
+      }
 
-    setLastScrollY(currentScrollY);
-  };
+      setLastScrollY(currentScrollY);
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [lastScrollY]);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   // reset menu when closing
   const closeMenu = () => {
@@ -75,50 +70,88 @@ function Header() {
           {/* MOBILE ICONS */}
           <div className="mobile-icons d-lg-none">
             <i className="bi bi-people"></i>
-            <i className="bi bi-cart3"></i>
-            <button
-              className="menu-btn"
-              onClick={() => setShowOffcanvas(true)}
-            >
+            <i
+              className="bi bi-cart3"
+              style={{ cursor: "pointer" }}
+              onClick={() => (window.location.href = "http://localhost:5174")}
+            ></i>
+            <button className="menu-btn" onClick={() => setShowOffcanvas(true)}>
               <i className="bi bi-list"></i>
             </button>
           </div>
 
           {/* DESKTOP CONTENT */}
           <Navbar.Collapse className="d-none d-lg-flex">
-            <div className="navbar-center">  
-             <Nav className="desktop-nav">
+            <div className="navbar-center">
+              <Nav className="desktop-nav">
+                {/* ABOUT – SIMPLE LIST */}
+                <NavDropdown
+                  title="About"
+                  className="simple-dropdown"
+                  autoClose="outside"
+                >
+                  <NavDropdown.Item as={Link} to="/about/overview">
+                    Overview
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/about/tribes">
+                    Tribes
+                  </NavDropdown.Item>
+                </NavDropdown>
 
-                  {/* ABOUT – SIMPLE LIST */}
-                  <NavDropdown title="About" className="simple-dropdown" autoClose="outside">
-                    <NavDropdown.Item as={Link} to="/about/overview">Overview</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/about/tribes">Tribes</NavDropdown.Item>
-                  </NavDropdown>
+                {/* EXPLORE – FLYOUT */}
+                <NavDropdown
+                  title="Explore"
+                  className="simple-dropdown"
+                  autoClose="outside"
+                >
+                  <NavDropdown.Item as={Link} to="/explore/destinations">
+                    Destinations
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/explore/adventure">
+                    Adventure
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/explore/culture">
+                    Culture & Lifestyle
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/explore/festivals">
+                    Festivals
+                  </NavDropdown.Item>
+                </NavDropdown>
 
-                  {/* EXPLORE – FLYOUT */}
-                  <NavDropdown title="Explore" className="simple-dropdown" autoClose="outside">
-                    <NavDropdown.Item as={Link} to="/explore/destinations">Destinations</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/explore/adventure">Adventure</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/explore/culture">Culture & Lifestyle</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/explore/festivals">Festivals</NavDropdown.Item>
-                  </NavDropdown>
-
-                  {/* PLAN – FLYOUT */}
-                  <NavDropdown title="Plan" className="simple-dropdown" autoClose="outside">
-                    <NavDropdown.Item as={Link} to="/plan/info">Travel Info</NavDropdown.Item>
-                    <NavDropdown.Item >Travel by Type</NavDropdown.Item>
-                    <NavDropdown.Item >Stays</NavDropdown.Item>
-                    <NavDropdown.Item >Itenaries</NavDropdown.Item>
-                  </NavDropdown>
-
-                </Nav>
-
+                {/* PLAN – FLYOUT */}
+                <NavDropdown
+                  title="Plan"
+                  className="simple-dropdown"
+                  autoClose="outside"
+                >
+                  <NavDropdown.Item as={Link} to="/plan/info">
+                    Travel Info
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/plan/traveltype">
+                    Travel by Type
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/plan/stays">
+                    Stays
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/plan/itenaries">
+                    Itenaries
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
             </div>
 
             <Nav className="nav-icons">
-              <Nav.Link><i className="bi bi-people"></i></Nav.Link>
-              <Nav.Link><i className="bi bi-search"></i></Nav.Link>
-              <Nav.Link><i className="bi bi-cart3"></i></Nav.Link>
+              <Nav.Link>
+                <i className="bi bi-people"></i>
+              </Nav.Link>
+              <Nav.Link>
+                <i className="bi bi-search"></i>
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => (window.location.href = "http://localhost:5174")}
+              >
+                <i className="bi bi-cart3"></i>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -134,7 +167,6 @@ function Header() {
         <Offcanvas.Header closeButton />
 
         <Offcanvas.Body className="mobile-menu">
-
           {/* SEARCH */}
           {activeMenu === "main" && (
             <div className="mobile-search">
@@ -148,21 +180,30 @@ function Header() {
             <ul className="mobile-menu-list">
               <li className="menu-item">
                 <span>About</span>
-                <button className="button-arr" onClick={() => setActiveMenu("about")}>
+                <button
+                  className="button-arr"
+                  onClick={() => setActiveMenu("about")}
+                >
                   <i className="bi bi-chevron-right"></i>
                 </button>
               </li>
 
               <li className="menu-item">
                 <span>Explore</span>
-                <button className="button-arr" onClick={() => setActiveMenu("explore")}>
+                <button
+                  className="button-arr"
+                  onClick={() => setActiveMenu("explore")}
+                >
                   <i className="bi bi-chevron-right"></i>
                 </button>
               </li>
 
               <li className="menu-item">
                 <span>Plan</span>
-                <button className="button-arr" onClick={() => setActiveMenu("plan")}>
+                <button
+                  className="button-arr"
+                  onClick={() => setActiveMenu("plan")}
+                >
                   <i className="bi bi-chevron-right"></i>
                 </button>
               </li>
@@ -172,7 +213,6 @@ function Header() {
               <li className="menu-item">
                 <span>Privacy Policy</span>
               </li>
-
             </ul>
           )}
 

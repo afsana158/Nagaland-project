@@ -42,8 +42,9 @@
 
 /* ---------------- MAIN NAVBAR ---------------- */
 .ngl-main-nav {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.75);
   width: 100%;
+  backdrop-filter: blur(8px);
 }
 
 .ngl-nav-grid {
@@ -90,9 +91,9 @@
 
 /* CENTER LOGO */
 .ngl-logo {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-weight: 600;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-align: center;
 }
 
@@ -105,16 +106,19 @@
   font-size: 1.2rem;
 }
 
-.ngl-right-icons li {
+.ngl-right-icons li a {
+  color: #fff;
   cursor: pointer;
 }
 
 .ngl-right-icons li {
   cursor: pointer;
-  transition: transform 0.2s ease, color 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.3s ease;
 }
 
-.ngl-right-icons li:hover {
+.ngl-right-icons > li:hover {
   color: #f5c16c;
   transform: scale(1.1);
 }
@@ -137,6 +141,50 @@
 .ngl-arrow.open {
   transform: rotate(180deg);
 }
+.shop-menu {
+  cursor: pointer;
+  position: relative;
+}
+
+.shop-label {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(6px);
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  width: 210px;
+  border-radius: 10px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  z-index: 999;
+  overflow: hidden;
+  animation: dropdownFade 0.18s ease;
+}
+
+.dropdown-menu li {
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #ffffff;
+  display: block;
+}
+
+.dropdown-menu li:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5c16c;
+}
 
 .ngl-left-menu a,
 .ngl-logo a {
@@ -147,4 +195,44 @@
 
 .ngl-left-menu li:hover a {
   color: #f5c16c;
+}
+
+/* USER MENU */
+.user-menu {
+  position: relative;
+}
+
+/* MENU ITEMS */
+.user-dropdown a,
+.user-dropdown button {
+  width: 100%;
+  display: block;
+  padding: 10px 18px;
+  text-align: left;
+  font-size: 0.9rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.user-trigger:hover {
+  color: #f5c16c;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

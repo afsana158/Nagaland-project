@@ -1,19 +1,49 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { useProducts } from "../context/ProductContext";
+import { useNavigate } from "react-router-dom";
+import { categories } from "../data/categories";
 import { FiUser, FiHeart, FiShoppingCart, FiSearch } from "react-icons/fi";
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
   const [hideNav, setHideNav] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+
+  const { searchQuery, setSearchQuery } = useProducts();
+  const navigate = useNavigate();
+
+  // get logged in user
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const checkUser = () => {
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      setUser(storedUser);
+    };
+
+    checkUser();
+
+    window.addEventListener("storage", checkUser);
+
+    return () => window.removeEventListener("storage", checkUser);
+  }, []);
 
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/");
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      setHideNav(window.scrollY > 200); // hide after 100px
+      setHideNav(window.scrollY > 500);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -21,7 +51,7 @@ export default function Navbar() {
 
   return (
     <header className={`ngl-header ${hideNav ? "hide" : ""}`}>
-      {/* ----------------- TOP TAGLINE STRIP ----------------- */}
+      {/* TOP STRIP */}
       <div className="ngl-top-strip">
         <div className="ngl-container">
           <span>Unique, Handcrafted Products from Nagaland</span>
@@ -32,35 +62,46 @@ export default function Navbar() {
 
       <div className="ngl-separator"></div>
 
-      {/* ----------------- MAIN NAVBAR ----------------- */}
+      {/* MAIN NAVBAR */}
       <nav className="ngl-main-nav">
         <div className="ngl-container ngl-nav-grid">
           {/* LEFT MENU */}
           <ul className="ngl-left-menu">
             <li>
-              {" "}
               <Link to="/">HOME</Link>
             </li>
 
-            <li onClick={() => toggleMenu("shop")}>
-              <Link to="/shop">SHOP BY CATEGORY</Link>
+            <li className="shop-menu" onClick={() => toggleMenu("shop")}>
+              <span className="shop-label">SHOP BY CATEGORY</span>
+
               <span
                 className={`ngl-arrow ${openMenu === "shop" ? "open" : ""}`}
               >
                 ▾
               </span>
+
+              {openMenu === "shop" && (
+                <ul
+                  className="dropdown-menu"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {categories.map((cat) => (
+                    <li
+                      key={cat.slug}
+                      onClick={() => {
+                        navigate(`/shop/${cat.slug}`);
+                        setOpenMenu(null);
+                      }}
+                      className="dropdown-item"
+                    >
+                      {cat.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
 
-            <li onClick={() => toggleMenu("gifting")}>
-              GIFTING
-              <span
-                className={`ngl-arrow ${openMenu === "gifting" ? "open" : ""}`}
-              >
-                ▾
-              </span>
-            </li>
-
-            <li onClick={() => toggleMenu("about")}>
+            <li>
               <Link to="/about">ABOUT</Link>
             </li>
           </ul>
@@ -70,19 +111,91 @@ export default function Navbar() {
 
           {/* RIGHT ICONS */}
           <ul className="ngl-right-icons">
-            <li>
-              <FiUser />
+            {/* USER */}
+            <li className="user-menu">
+              {user ? (
+                <>
+                  <div
+                    className="user-trigger"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleMenu("user");
+                    }}
+                  >
+                    <span className="shop-label">
+                      Hi, {user.name.split(" ")[0]}
+                    </span>
+
+                    <span
+                      className={`ngl-arrow ${openMenu === "user" ? "open" : ""}`}
+                    >
+                      ▾
+                    </span>
+                  </div>
+
+                  {openMenu === "user" && (
+                    <ul
+                      className="dropdown-menu"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <li
+                        onClick={() => {
+                          navigate("/profile");
+                          setOpenMenu(null);
+                        }}
+                      >
+                        Profile
+                      </li>
+
+                      <li onClick={handleLogout}>Logout</li>
+                    </ul>
+                  )}
+                </>
+              ) : (
+                <Link to="/auth">
+                  <FiUser />
+                </Link>
+              )}
             </li>
+
+            {/* WISHLIST */}
             <li>
-              <FiHeart />
+              <Link to="/wishlist">
+                <FiHeart />
+              </Link>
             </li>
+
+            {/* CART */}
             <li>
-              <FiShoppingCart />
+              <Link to="/cart">
+                <FiShoppingCart />
+              </Link>
             </li>
-            <li>
+
+            {/* SEARCH */}
+            <li onClick={() => setShowSearch(!showSearch)}>
               <FiSearch />
             </li>
           </ul>
+
+          {/* SEARCH BOX */}
+          {showSearch && (
+            <div className="search-box">
+              <input
+                type="text"
+                placeholder="Search jewellery, handlooms, crafts..."
+                value={searchQuery}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setSearchQuery(value);
+
+                  if (value.trim()) {
+                    navigate(`/search?q=${encodeURIComponent(value)}`);
+                  }
+                }}
+              />
+            </div>
+          )}
         </div>
       </nav>
 

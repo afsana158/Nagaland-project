@@ -17,7 +17,7 @@ function Hero() {
           className="explore-btn"
           onClick={() =>
             document
-              .getElementById("shop")
+              .getElementById("products")
               .scrollIntoView({ behavior: "smooth" })
           }
         >
