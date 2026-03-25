@@ -9,9 +9,12 @@ import Festivals from "./pages/ExplorePages/Festivals.jsx"
 import TravelType from "./pages/PlanPages/TravelType.jsx"
 import Itenaries from "./pages/PlanPages/Itenaries.jsx"
 import Stays from "./pages/PlanPages/Stays.jsx"
+import ScrollToTop from "./components/ScrollToTop.jsx"
+
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about/overview" element={<Overview />} />
