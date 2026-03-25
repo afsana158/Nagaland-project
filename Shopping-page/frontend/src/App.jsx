@@ -12,6 +12,7 @@ import Search from "./pages/Search.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
 import Profile from "./pages/Profile.jsx";
 import Checkout from "./pages/Checkout.jsx";
+import Chatbot from "./components/Chatbot";
 import OrderSuccess from "./pages/OrderSuccess.jsx";
 
 function App() {
@@ -96,6 +97,7 @@ function App() {
           }
         />
       </Routes>
+      <Chatbot />
     </>
   );
 }

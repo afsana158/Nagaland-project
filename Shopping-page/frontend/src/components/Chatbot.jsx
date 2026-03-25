@@ -1,115 +1,158 @@
-import { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Chatbot.css";
 
-const faqResponses = [
-  {
-    keywords: ["hello", "hi", "hey"],
-    answer: "Hi 👋 Welcome to Nagacrafts! How can I help you today?",
-  },
-  {
-    keywords: ["delivery", "shipping"],
-    answer:
-      "We deliver across India 🇮🇳. Orders usually arrive in 5–7 business days.",
-  },
-  {
-    keywords: ["return", "refund"],
-    answer: "Yes! We offer easy returns within 7 days of delivery.",
-  },
-  {
-    keywords: ["payment", "pay", "cod"],
-    answer:
-      "We accept UPI, debit/credit cards, net banking, and Cash on Delivery.",
-  },
-  {
-    keywords: ["handmade", "authentic"],
-    answer:
-      "Absolutely! All our products are 100% handcrafted by artisans from Nagaland.",
-  },
-  {
-    keywords: ["jewellery", "necklace"],
-    answer: "Our jewellery is handmade using traditional tribal techniques.",
-  },
-  {
-    keywords: ["contact", "support"],
-    answer:
-      "You can contact us via the Contact page or email support@nagacrafts.com",
-  },
+const FLASK_URL = "http://127.0.0.1:5000";
+
+const CHIPS = [
+  "Top places",
+  "Local food",
+  "Hotels",
+  "3-day itinerary",
+  "Transport",
 ];
 
-export default function Chatbot() {
+export default function FloatingChatbot() {
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { from: "bot", text: "Hi 👋 How can I help you today?" },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const bottomRef = useRef(null);
 
-  const sendMessage = () => {
-    if (!input.trim()) return;
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
 
-    const userMessage = input.toLowerCase();
-
-    let botReply =
-      "Sorry 😅 I didn’t understand that. Try asking about delivery, payment, or products.";
-
-    for (let faq of faqResponses) {
-      if (faq.keywords.some((word) => userMessage.includes(word))) {
-        botReply = faq.answer;
-        break;
-      }
-    }
-
-    setMessages((prev) => [
-      ...prev,
-      { from: "user", text: input },
-      { from: "bot", text: botReply },
-    ]);
+  async function sendMessage(text) {
+    const msg = (text || input).trim();
+    if (!msg || loading) return;
 
     setInput("");
-  };
+    setMessages((prev) => [...prev, { role: "user", text: msg }]);
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${FLASK_URL}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg }),
+      });
+      const data = await res.json();
+      setMessages((prev) => [...prev, { role: "bot", text: data.response }]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "bot",
+          text: "⚠️ Cannot reach assistant. Is Flask running?",
+          error: true,
+        },
+      ]);
+    }
+
+    setLoading(false);
+  }
 
   return (
     <>
-      {/* Floating Button */}
-      <button className="chatbot-toggle" onClick={() => setOpen(!open)}>
-        💬
-      </button>
-
-      {/* Chat Window */}
+      {/* CHAT WINDOW */}
       {open && (
-        <div className="chatbot-window">
-          <div className="chatbot-header">
-            <span>Nagacrafts Assistant</span>
-            <button onClick={() => setOpen(false)}>✕</button>
+        <div className="fcb-window">
+          {/* HEADER */}
+          <div className="fcb-header">
+            <div className="fcb-header-left">
+              <span className="fcb-header-icon">🧭</span>
+              <div>
+                <p className="fcb-header-title">Nagaland Assistant</p>
+                <p className="fcb-header-sub">Ask me anything</p>
+              </div>
+            </div>
+            <button
+              className="fcb-close"
+              onClick={() => setOpen(false)}
+              aria-label="Close"
+            >
+              ✕
+            </button>
           </div>
 
-          <div className="chatbot-messages">
-            {messages.map((msg, index) => (
-              <div key={index} className={`msg ${msg.from}`}>
-                {msg.text}
+          {/* MESSAGES */}
+          <div className="fcb-messages">
+            {messages.length === 0 && (
+              <div className="fcb-empty">
+                <span>🌄</span>
+                <p>Discover Nagaland with AI</p>
+              </div>
+            )}
+
+            {messages.map((m, i) => (
+              <div
+                key={i}
+                className={`fcb-msg ${m.role} ${m.error ? "error" : ""}`}
+              >
+                {m.text.split("\n").map((line, j) =>
+                  line ? (
+                    <span key={j}>
+                      {line}
+                      <br />
+                    </span>
+                  ) : null,
+                )}
               </div>
             ))}
+
+            {loading && (
+              <div className="fcb-msg bot">
+                <span className="fcb-dots">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+              </div>
+            )}
+
+            <div ref={bottomRef} />
           </div>
 
-          {/* Quick Actions */}
-          <div className="quick-actions">
-            <button onClick={() => setInput("Delivery time")}>Delivery</button>
-            <button onClick={() => setInput("Payment options")}>Payment</button>
-            <button onClick={() => setInput("Return policy")}>Returns</button>
-          </div>
+          {/* QUICK CHIPS */}
+          {messages.length === 0 && (
+            <div className="fcb-chips">
+              {CHIPS.map((c) => (
+                <button key={c} onClick={() => sendMessage(c)}>
+                  {c}
+                </button>
+              ))}
+            </div>
+          )}
 
-          {/* Input */}
-          <div className="chatbot-input">
+          {/* INPUT */}
+          <div className="fcb-input-bar">
             <input
-              type="text"
-              placeholder="Ask about products, orders, delivery..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+              placeholder="Type a message…"
+              disabled={loading}
+              autoFocus
             />
-            <button onClick={sendMessage}>➤</button>
+            <button
+              onClick={() => sendMessage()}
+              disabled={loading}
+              aria-label="Send"
+            >
+              &#10148;
+            </button>
           </div>
         </div>
       )}
+
+      {/* TOGGLE BUTTON */}
+      <button
+        className={`fcb-toggle ${open ? "open" : ""}`}
+        onClick={() => setOpen((o) => !o)}
+        aria-label="Toggle chatbot"
+      >
+        {open ? "✕" : "🧭"}
+      </button>
     </>
   );
 }
