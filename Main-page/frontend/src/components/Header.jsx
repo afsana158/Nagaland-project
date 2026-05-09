@@ -124,9 +124,6 @@ function Header() {
                   className="simple-dropdown"
                   autoClose="outside"
                 >
-                  <NavDropdown.Item as={Link} to="/plan/info">
-                    Travel Info
-                  </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/plan/traveltype">
                     Travel by Type
                   </NavDropdown.Item>
