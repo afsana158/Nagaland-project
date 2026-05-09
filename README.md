@@ -76,10 +76,20 @@ Nagaland-project/
 │           ├── App.jsx
 │           └── main.jsx
 │
-├── Community-page/                 # Community frontend (in progress)
+├── Community-page/                 
 │   ├── backend/
 │   └── frontend/
-│
+│      │   ├── Images
+│      │   ├── Video
+│      │   ├── Auth.js
+│      │   ├── Community.html
+│      │   ├── Community.css
+│           │   ├── Community.js
+│           │   ├── index.html
+│           │   ├── index.js
+│           │   ├── Profile.js
+│           │   ├── Profile.html
+│           │   ├── style.css
 └── README.md
 ```
 
