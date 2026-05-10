@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route("/chat", methods=["POST"])
+@app.route("/chatbot", methods=["POST"])
 def chat():
     user_input = request.json.get("message", "")
     response = chatbot_response(user_input)
