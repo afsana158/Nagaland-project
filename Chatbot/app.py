@@ -3,11 +3,11 @@ from chatbot import chatbot_response
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
+@app.route("/chatbot")
+def chatbot_page():
     return render_template("index.html")
 
-@app.route("/chatbot", methods=["POST"])
+@app.route("/api/chatbot", methods=["POST"])
 def chat():
     user_input = request.json.get("message", "")
     response = chatbot_response(user_input)
