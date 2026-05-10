@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import "./../../styles/PlanStyles.css";
-import aboutHero from "./../../assets/Plan/thero.avif";
+import aboutHero from "./../../assets/plan/thero.avif";
 
 const travelData = {
   solo: {

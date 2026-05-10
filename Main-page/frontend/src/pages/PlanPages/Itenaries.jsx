@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import Layout from "../../components/Layout.jsx";
 import "../../styles/PlanStyles.css";
 
-import aboutHero from "../../assets/Plan/ihero.webp";
+import aboutHero from "../../assets/plan/ihero.webp";
 
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import { DndContext, closestCenter } from "@dnd-kit/core";
