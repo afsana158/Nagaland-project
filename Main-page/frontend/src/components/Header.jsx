@@ -73,8 +73,8 @@ function Header() {
             <i
               className="bi bi-cart3"
               style={{ cursor: "pointer" }}
-              onClick={() => (window.location.href = "http://localhost:5174")}
-            ></i>
+              onClick={() => (window.location.href = "https://naga-shop.vercel.app/")}>
+            </i>
             <button className="menu-btn" onClick={() => setShowOffcanvas(true)}>
               <i className="bi bi-list"></i>
             </button>
@@ -145,7 +145,7 @@ function Header() {
                 <i className="bi bi-search"></i>
               </Nav.Link>
               <Nav.Link
-                onClick={() => (window.location.href = "http://localhost:5174")}
+                onClick={() => (window.location.href = "https://naga-shop.vercel.app/")}
               >
                 <i className="bi bi-cart3"></i>
               </Nav.Link>
