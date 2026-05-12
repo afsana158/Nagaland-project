@@ -139,7 +139,8 @@ function Header() {
             </div>
 
             <Nav className="nav-icons">
-              <Nav.Link onClick={() => (window.location.href = "https://naga-community.vercel.app/")}>
+              <Nav.Link 
+                onClick={() => (window.location.href = "https://naga-community.vercel.app/")}>
                 <i className="bi bi-people"></i>
               </Nav.Link>
               <Nav.Link>
