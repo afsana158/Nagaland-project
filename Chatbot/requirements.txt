@@ -24,7 +24,7 @@ idna==3.13
 Jinja2==3.1.6
 joblib==1.5.3
 lxml==6.1.0
-macholib @ file:///AppleInternal/Library/BuildRoots/4~CMzOugA1hT-4O2kZ5M4Og1VxAfLgir31_besAu0/Library/Caches/com.apple.xbs/Sources/python3/macholib-1.15.2-py2.py3-none-any.whl
+macholib 
 markdown-it-py==3.0.0
 MarkupSafe==3.0.3
 mdurl==0.1.2
@@ -50,7 +50,7 @@ scikit-learn==1.6.1
 scipy==1.13.1
 sentence-transformers==5.1.2
 shellingham==1.5.4
-six @ file:///AppleInternal/Library/BuildRoots/4~CMzOugA1hT-4O2kZ5M4Og1VxAfLgir31_besAu0/Library/Caches/com.apple.xbs/Sources/python3/six-1.15.0-py2.py3-none-any.whl
+six 
 smart_open==7.5.0
 spacy==3.8.11
 spacy-legacy==3.0.12
