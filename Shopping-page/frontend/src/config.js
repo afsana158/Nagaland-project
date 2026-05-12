@@ -1,1 +1,1 @@
-export const BASE_URL = "https://your-backend-url.up.railway.app";
+export const BASE_URL = "https://nagaland-project-production.up.railway.app";
