@@ -2,6 +2,7 @@
 
 A multi-frontend web platform for exploring Nagaland tourism and shopping for authentic Naga handcrafted products, powered by a RAG + rule-based AI chatbot assistant.
 
+Live link: https://nagaland.vercel.app/
 ---
 
 ## 📁 Project Structure
