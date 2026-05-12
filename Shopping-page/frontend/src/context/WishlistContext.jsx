@@ -19,6 +19,11 @@ export const WishlistProvider = ({ children }) => {
   }, [user]);
 
   const addToWishlist = async (item) => {
+    if (!user) {
+    alert("Please login first");
+    return;
+    }
+
     await axios.post(`${BASE_URL}/api/wishlist/add`, {
       email: user.email,
       productId: item.id,
@@ -28,6 +33,8 @@ export const WishlistProvider = ({ children }) => {
   };
 
   const removeFromWishlist = async (id) => {
+    if (!user) return;
+
     await axios.delete(
       `${BASE_URL}/api/wishlist/remove/${id}/${user.email}`,
     );
