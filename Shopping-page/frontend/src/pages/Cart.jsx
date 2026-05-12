@@ -1,5 +1,6 @@
 import { useCart } from "../context/CartContext.jsx";
 import "./Cart.css";
+import { BASE_URL } from "../config.js";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
@@ -25,7 +26,7 @@ export default function Cart() {
             {cartItems.map((item) => (
               <div className="cart-item" key={item.product_id}>
                 <img
-                  src={`http://localhost:5000/images/${item.image}`}
+                  src={`${BASE_URL}/images/${item.image}`}
                   alt={item.name}
                 />
 

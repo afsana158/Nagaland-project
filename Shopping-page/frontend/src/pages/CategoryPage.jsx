@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
+import { BASE_URL } from "../config";
 import { useWishlist } from "../context/WishlistContext";
 import { useProducts } from "../context/ProductContext";
 import "./CategoryPage.css";
@@ -26,7 +27,7 @@ export default function CategoryProducts() {
   useEffect(() => {
     setLoading(true);
 
-    const url = new URL("http://localhost:5000/api/products");
+    const url = new URL(`${BASE_URL}/api/products`);
     url.searchParams.append("category", category);
 
     if (searchQuery) {
@@ -72,7 +73,7 @@ export default function CategoryProducts() {
                 </div>
 
                 <img
-                  src={`http://localhost:5000/images/${product.image}`}
+                  src={`${BASE_URL}/images/${product.image}`}
                   alt={product.name}
                 />
 

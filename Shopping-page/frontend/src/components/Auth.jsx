@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Auth.css";
 import axios from "axios";
+import { BASE_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 
@@ -22,8 +23,8 @@ export default function Auth() {
 
     try {
       const url = isLogin
-        ? "http://localhost:5000/api/auth/login"
-        : "http://localhost:5000/api/auth/signup";
+        ? `${BASE_URL}/api/auth/login`
+        : `${BASE_URL}/api/auth/signup`;
 
       const res = await axios.post(url, form);
 

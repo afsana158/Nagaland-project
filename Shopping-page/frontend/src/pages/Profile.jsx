@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Profile.css";
+import { BASE_URL } from "../config";
 
 export default function Profile() {
   const [orders, setOrders] = useState([]);
@@ -11,7 +12,7 @@ export default function Profile() {
     if (!user) return;
 
     axios
-      .get(`http://localhost:5000/api/orders/${user.email}`)
+      .get(`${BASE_URL}/api/orders/${user.email}`)
       .then((res) => {
         setOrders(res.data);
       })

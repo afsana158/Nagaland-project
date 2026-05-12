@@ -4,6 +4,7 @@ import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
+import { BASE_URL } from "../config";
 
 import "./CategoryPage.css"; // reuse same styles
 
@@ -21,7 +22,7 @@ export default function SearchResults() {
     if (!query) return;
 
     setLoading(true);
-    fetch(`http://localhost:5000/api/products?search=${query}`)
+    fetch(`${BASE_URL}/api/products?search=${query}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -57,7 +58,7 @@ export default function SearchResults() {
               </div>
 
               <img
-                src={`http://localhost:5000/images/${product.image}`}
+                src={`${BASE_URL}/images/${product.image}`}
                 alt={product.name}
               />
 

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import {BASE_URL} from "../config"
 
 const WishlistContext = createContext();
 
@@ -12,13 +13,13 @@ export const WishlistProvider = ({ children }) => {
     if (!user) return;
 
     axios
-      .get(`http://localhost:5000/api/wishlist/${user.email}`)
+      .get(`${BASE_URL}/api/wishlist/${user.email}`)
       .then((res) => setWishlist(res.data))
       .catch((err) => console.log(err));
   }, [user]);
 
   const addToWishlist = async (item) => {
-    await axios.post("http://localhost:5000/api/wishlist/add", {
+    await axios.post(`${BASE_URL}/api/wishlist/add`, {
       email: user.email,
       productId: item.id,
     });
@@ -28,7 +29,7 @@ export const WishlistProvider = ({ children }) => {
 
   const removeFromWishlist = async (id) => {
     await axios.delete(
-      `http://localhost:5000/api/wishlist/remove/${id}/${user.email}`,
+      `${BASE_URL}/api/wishlist/remove/${id}/${user.email}`,
     );
 
     setWishlist((prev) => prev.filter((item) => item.id !== id));

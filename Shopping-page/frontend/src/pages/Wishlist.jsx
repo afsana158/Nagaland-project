@@ -1,6 +1,7 @@
 import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
 import "./Wishlist.css";
+import { BASE_URL } from "../config";
 
 export default function Wishlist() {
   const { wishlist = [], removeFromWishlist } = useWishlist();
@@ -17,7 +18,7 @@ export default function Wishlist() {
           {wishlist.map((item) => (
             <div className="wishlist-card" key={item.product_id || item.id}>
               <img
-                src={`http://localhost:5000/images/${item.image}`}
+                src={`${BASE_URL}/images/${item.image}`}
                 alt={item.name}
               />
 

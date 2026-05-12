@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import {BASE_URL} from "../config";
 
 const CartContext = createContext();
 
@@ -12,7 +13,7 @@ export const CartProvider = ({ children }) => {
     if (!user) return;
 
     axios
-      .get(`http://localhost:5000/api/cart/${user.email}`)
+      .get(`${BASE_URL}/api/cart/${user.email}`)
       .then((res) => {
         setCartItems(res.data);
       })
@@ -28,7 +29,7 @@ export const CartProvider = ({ children }) => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/cart/add", {
+      await axios.post(`${BASE_URL}/api/cart/add`, {
         email: user.email,
         productId: item.id,
         quantity: 1,
@@ -63,7 +64,7 @@ export const CartProvider = ({ children }) => {
     console.log("Removing product", productId, "for user", user.email);
 
     await axios.delete(
-      `http://localhost:5000/api/cart/remove/${productId}/${user.email}`,
+      `${BASE_URL}/api/cart/remove/${productId}/${user.email}`,
     );
 
     setCartItems((prev) => prev.filter((i) => i.product_id !== productId));
@@ -88,7 +89,7 @@ export const CartProvider = ({ children }) => {
   const clearCart = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
-    await axios.delete(`http://localhost:5000/api/cart/clear/${user.email}`);
+    await axios.delete(`${BASE_URL}/api/cart/clear/${user.email}`);
 
     setCartItems([]);
   };

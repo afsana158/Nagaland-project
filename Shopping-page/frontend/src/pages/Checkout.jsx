@@ -1,6 +1,7 @@
 import { useCart } from "../context/CartContext";
 import axios from "axios";
 import "./Checkout.css";
+import { BASE_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
@@ -15,7 +16,7 @@ export default function Checkout() {
   const handlePayment = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/payment/create-order",
+        `${BASE_URL}/api/payment/create-order`,
         { amount: total },
       );
 
@@ -31,7 +32,7 @@ export default function Checkout() {
         handler: async function (response) {
           console.log("Payment successful", response);
           const user = JSON.parse(localStorage.getItem("user"));
-          await axios.post("http://localhost:5000/api/orders", {
+          await axios.post(`${BASE_URL}/api/orders`, {
             email: user.email,
             items: cartItems,
             amount: total,
@@ -39,7 +40,7 @@ export default function Checkout() {
           });
 
           await axios.delete(
-            `http://localhost:5000/api/cart/clear/${user.email}`,
+            `${BASE_URL}/api/cart/clear/${user.email}`,
           );
 
           // Clear cart after successful order
@@ -98,7 +99,7 @@ export default function Checkout() {
           {cartItems.map((item) => (
             <div className="summary-item" key={item.product_id}>
               <img
-                src={`http://localhost:5000/images/${item.image}`}
+                src={`${BASE_URL}/images/${item.image}`}
                 alt={item.name}
               />
 
