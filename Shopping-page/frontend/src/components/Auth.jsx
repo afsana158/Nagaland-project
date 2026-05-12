@@ -47,7 +47,7 @@ export default function Auth() {
 
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/google", {
+      const res = await axios.post(`${BASE_URL}/api/auth/google`, {
         token: credentialResponse.credential,
       });
 
