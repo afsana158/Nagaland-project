@@ -69,7 +69,8 @@ function Header() {
 
           {/* MOBILE ICONS */}
           <div className="mobile-icons d-lg-none">
-            <i className="bi bi-people"></i>
+            <i className="bi bi-people" style={{ cursor: "pointer" }}
+              onClick={() => (window.location.href = "https://naga-community.vercel.app/")}></i>
             <i
               className="bi bi-cart3"
               style={{ cursor: "pointer" }}
@@ -138,7 +139,7 @@ function Header() {
             </div>
 
             <Nav className="nav-icons">
-              <Nav.Link>
+              <Nav.Link onClick={() => (window.location.href = "https://naga-community.vercel.app/")}>
                 <i className="bi bi-people"></i>
               </Nav.Link>
               <Nav.Link>
