@@ -6,5 +6,4 @@ pandas
 faiss-cpu
 sentence-transformers
 langchain
-openai
 scikit-learn
