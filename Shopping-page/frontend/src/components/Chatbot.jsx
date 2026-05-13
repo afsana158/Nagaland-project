@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Chatbot.css";
 
-const FLASK_URL = "https://naga-bot-oid3.onrender.com";
+const FLASK_URL = "https://naga-bot-oid3.onrender.com/api/chatbot";
 
 const CHIPS = [
   "Top places",
