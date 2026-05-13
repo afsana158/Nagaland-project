@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Chatbot.css";
 
-const FLASK_URL = "https://naga-bot-oid3.onrender.com/api/chatbot";
+const FLASK_URL = "https://naga-bot-oid3.onrender.com";
 
 const CHIPS = [
   "Top places",
@@ -31,7 +31,7 @@ export default function FloatingChatbot() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${FLASK_URL}/chat`, {
+      const res = await fetch(`${FLASK_URL}/api/chatbot`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: msg }),
