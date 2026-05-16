@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const db = require("../db");
 
 const CLIENT_ID = "446916475153-648d3c008ov6qhdjg2rblpc58jmhls24.apps.googleusercontent.com";
-const SECRET = "secret321";
+const SECRET = "secret123";
 
 const client = new OAuth2Client(CLIENT_ID);
 
