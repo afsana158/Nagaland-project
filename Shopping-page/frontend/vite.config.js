@@ -10,6 +10,6 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/shop/',
+  base: '/',
 })
 
